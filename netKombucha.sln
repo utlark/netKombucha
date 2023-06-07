@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "netKombucha", "netKombucha\netKombucha.csproj", "{624E8192-5A77-4B14-BB6D-B2302B88AA29}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{624E8192-5A77-4B14-BB6D-B2302B88AA29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{624E8192-5A77-4B14-BB6D-B2302B88AA29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{624E8192-5A77-4B14-BB6D-B2302B88AA29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{624E8192-5A77-4B14-BB6D-B2302B88AA29}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
