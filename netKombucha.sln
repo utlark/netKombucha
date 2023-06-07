@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "netKombucha", "netKombucha\netKombucha.csproj", "{624E8192-5A77-4B14-BB6D-B2302B88AA29}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Novicam", "Novicam\Novicam.csproj", "{9CDF55C5-AD67-42C6-80E4-C6D9A0EF6F77}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{624E8192-5A77-4B14-BB6D-B2302B88AA29}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{624E8192-5A77-4B14-BB6D-B2302B88AA29}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{624E8192-5A77-4B14-BB6D-B2302B88AA29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CDF55C5-AD67-42C6-80E4-C6D9A0EF6F77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CDF55C5-AD67-42C6-80E4-C6D9A0EF6F77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CDF55C5-AD67-42C6-80E4-C6D9A0EF6F77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CDF55C5-AD67-42C6-80E4-C6D9A0EF6F77}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
