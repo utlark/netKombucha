@@ -6,12 +6,38 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="netKombucha.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
-        Title="netKombucha">
+        Background="#4d5057"
+        CanResize="False"
+        Title="Kombucha"
+        MaxHeight="300"
+        MinHeight="300"
+        MaxWidth="300"
+        MinWidth="300"
+        Height="300"
+        Width="300">
 
     <Design.DataContext>
         <vm:MainWindowViewModel />
     </Design.DataContext>
 
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+    <Window.Styles>
+        <Style Selector="Button">
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="Foreground" Value="#FFFFFF" />
+            <Setter Property="Background" Value="#00aeef" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="FontFamily" Value="/Assets/NotoSans-Regular.ttf#Noto Sans" />
+        </Style>
+        <Style Selector="Button:pointerover /template/ ContentPresenter">
+            <Setter Property="Foreground" Value="#FFFFFF" />
+            <Setter Property="Background" Value="#008BBF" />
+        </Style>
+    </Window.Styles>
+
+    <StackPanel Spacing="5" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Button Width="220">Установить конфигурацию</Button>
+        <Button Width="220">Скачать конфигурацию</Button>
+    </StackPanel>
 
 </Window>
