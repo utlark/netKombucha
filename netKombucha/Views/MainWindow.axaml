@@ -32,8 +32,6 @@
         </Style>
 
         <Style Selector="StackPanel.SettingsHelp > Button">
-            <Setter Property="Width" Value="27" />
-            <Setter Property="Height" Value="27" />
             <Setter Property="Cursor" Value="Hand" />
             <Setter Property="Padding" Value="0" />
             <Setter Property="Background" Value="Transparent" />
@@ -43,6 +41,7 @@
         </Style>
         <Style Selector="StackPanel.SettingsHelp > Button:pointerover > Image">
             <Setter Property="Opacity" Value="0.7" />
+            <Setter Property="OpacityMask" Value="Black" />
         </Style>
         <Style Selector="StackPanel.SettingsHelp > Button:pressed /template/ ContentPresenter">
             <Setter Property="Background" Value="Transparent" />
@@ -60,6 +59,7 @@
         </Style>
         <Style Selector="StackPanel.FirstStepStack > StackPanel > Button > StackPanel">
             <Setter Property="Opacity" Value="0.7" />
+            <Setter Property="OpacityMask" Value="Black" />
         </Style>
         <Style Selector="StackPanel.FirstStepStack > StackPanel > Button:pointerover > StackPanel">
             <Setter Property="Opacity" Value="1" />
@@ -77,6 +77,9 @@
 
         <Style Selector="StackPanel.StepStackInactive > Panel">
             <Setter Property="Opacity" Value="0.4" />
+        </Style>
+        <Style Selector="StackPanel.StepStackInactive > Panel > Image">
+            <Setter Property="OpacityMask" Value="Black" />
         </Style>
         <Style Selector="StackPanel.StepStackInactive > Button">
             <Setter Property="Cursor" Value="No" />
@@ -97,6 +100,9 @@
 
         <Style Selector="StackPanel.StepStackActive > Panel">
             <Setter Property="Opacity" Value="1" />
+        </Style>
+        <Style Selector="StackPanel.StepStackInactive > Panel > Image">
+            <Setter Property="OpacityMask" Value="Black" />
         </Style>
         <Style Selector="StackPanel.StepStackActive > Button">
             <Setter Property="Cursor" Value="Hand" />
@@ -121,50 +127,50 @@
         <Panel HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="30,10,30,0">
             <!-- Icon -->
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Orientation="Horizontal" Spacing="0">
-                <Image Height="27" Width="27" Stretch="Fill" Source="/Assets/Icons/TitleIcon.png" />
-                <TextBlock Classes="ExtraBold" TextAlignment="Center" FontSize="16" Foreground="#F8C822" Text="Kombucha" />
+                <Image Height="27" Width="27" Stretch="Fill" Source="{SvgImage /Assets/Icons/TitleIcon.svg}" />
+                <TextBlock Classes="ExtraBold" VerticalAlignment="Center" TextAlignment="Center" FontSize="16" Foreground="#F8C822" Text="Kombucha" />
             </StackPanel>
 
             <!-- SettingsHelp -->
             <StackPanel Classes="SettingsHelp" HorizontalAlignment="Right" VerticalAlignment="Top" Orientation="Horizontal" Spacing="20">
                 <Button>
-                    <Image Stretch="Fill" Source="/Assets/Icons/Settings.png" />
+                    <Image Height="27" Width="27" Stretch="Fill" Source="{SvgImage /Assets/Icons/Settings.svg}" />
                 </Button>
                 <Button>
-                    <Image Stretch="Fill" Source="/Assets/Icons/Help.png" />
+                    <Image Height="27" Width="27" Stretch="Fill" Source="{SvgImage /Assets/Icons/Help.svg}" />
                 </Button>
             </StackPanel>
         </Panel>
 
         <!-- Body -->
-        <Panel HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="50,0,50,0">
+        <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Center" Orientation="Horizontal" Spacing="50" Margin="50,0,50,0">
 
             <!-- FirstStep -->
-            <StackPanel Classes="FirstStepStack" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Vertical" Spacing="30">
-                <Image Width="50" Height="50" Stretch="Fill" Source="/Assets/Icons/FirstStepIcon.png" />
+            <StackPanel Classes="FirstStepStack" VerticalAlignment="Top" Orientation="Vertical" Spacing="30">
+                <Image Width="50" Height="50" Stretch="Fill" Source="{SvgImage /Assets/Icons/FirstStepIcon.svg}" Margin="-2,0,0,0" />
 
                 <StackPanel Orientation="Vertical" Spacing="0">
                     <Button Classes="Primary" Width="200" Height="49" Padding="0" CornerRadius="25">
                         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal" Spacing="4">
-                            <Image Height="20" Width="20" Stretch="Fill" Source="/Assets/Icons/DownloadArrow.png" />
-                            <TextBlock Classes="Bold" TextAlignment="Center" FontSize="12" Foreground="#FFFFFF" Text="Скачать настройки" />
+                            <Image Height="20" Width="20" Stretch="Fill" Source="{SvgImage /Assets/Icons/DownloadArrow.svg}" />
+                            <TextBlock Classes="Bold" VerticalAlignment="Center" TextAlignment="Left" Width="124" Height="16" FontSize="12" Foreground="#FFFFFF"  Text="Скачать настройки" />
                         </StackPanel>
                     </Button>
 
                     <Button Width="200" Height="49" Padding="0" CornerRadius="25">
                         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal" Spacing="4">
-                            <Image Height="20" Width="20" Stretch="Fill" Source="/Assets/Icons/UploadArrow.png" />
-                            <TextBlock Classes="Bold" TextAlignment="Center" FontSize="12" Foreground="#FFFFFF" Text="Зашить настройки" />
+                            <Image Height="20" Width="20" Stretch="Fill" Source="{SvgImage /Assets/Icons/UploadArrow.svg}" />
+                            <TextBlock Classes="Bold" VerticalAlignment="Center" TextAlignment="Left" Width="124" Height="16" FontSize="12" Foreground="#FFFFFF" Text="Зашить настройки" />
                         </StackPanel>
                     </Button>
                 </StackPanel>
             </StackPanel>
 
             <!-- SecondStep -->
-            <StackPanel Classes="StepStackInactive" HorizontalAlignment="Center" VerticalAlignment="Top" Orientation="Vertical" Spacing="30">
+            <StackPanel Classes="StepStackInactive" VerticalAlignment="Top" Orientation="Vertical" Spacing="30">
                 <Panel>
                     <Line VerticalAlignment="Center" StartPoint="-86,0" EndPoint="35,0" Stroke="#FFFFFF" StrokeThickness="2" />
-                    <Image VerticalAlignment="Center" Width="50" Height="50" Stretch="Fill" Source="/Assets/Icons/SecondStepIcon.png" />
+                    <Image VerticalAlignment="Center" Width="50" Height="50" Stretch="Fill" Source="{SvgImage /Assets/Icons/SecondStepIcon.svg}" />
                 </Panel>
 
                 <Button Classes="Primary" Width="200" Height="49" CornerRadius="25" Padding="0">
@@ -173,16 +179,16 @@
             </StackPanel>
 
             <!-- ThirdStep -->
-            <StackPanel Classes="StepStackActive" HorizontalAlignment="Right" VerticalAlignment="Top" Orientation="Vertical" Spacing="30">
+            <StackPanel Classes="StepStackActive" VerticalAlignment="Top" Orientation="Vertical" Spacing="30">
                 <Panel>
                     <Line VerticalAlignment="Center" StartPoint="-86,0" EndPoint="35,0" Stroke="#FFFFFF" StrokeThickness="2" />
-                    <Image VerticalAlignment="Center" Width="50" Height="50" Stretch="Fill" Source="/Assets/Icons/ThirdStepIcon.png" />
+                    <Image VerticalAlignment="Center" Width="50" Height="50" Stretch="Fill" Source="{SvgImage /Assets/Icons/ThirdStepIcon.svg}" />
                 </Panel>
 
                 <Button Classes="Primary" Width="200" Height="49" CornerRadius="25" Padding="0">
                     <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Classes="Bold" TextAlignment="Center" FontSize="12" Foreground="#FFFFFF" Text="Начать" />
                 </Button>
             </StackPanel>
-        </Panel>
+        </StackPanel>
     </Panel>
 </Window>
