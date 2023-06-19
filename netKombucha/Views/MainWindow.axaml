@@ -32,8 +32,12 @@
         </Style>
 
         <Style Selector="StackPanel.SettingsHelp > Button">
+            <Setter Property="Width" Value="27" />
+            <Setter Property="Height" Value="27" />
             <Setter Property="Cursor" Value="Hand" />
             <Setter Property="Padding" Value="0" />
+            <Setter Property="CornerRadius" Value="0" />
+            <Setter Property="BorderThickness" Value="0" />
             <Setter Property="Background" Value="Transparent" />
         </Style>
         <Style Selector="StackPanel.SettingsHelp > Button:pressed">
@@ -134,10 +138,10 @@
             <!-- SettingsHelp -->
             <StackPanel Classes="SettingsHelp" HorizontalAlignment="Right" VerticalAlignment="Top" Orientation="Horizontal" Spacing="20">
                 <Button>
-                    <Image Height="27" Width="27" Stretch="Fill" Source="{SvgImage /Assets/Icons/Settings.svg}" />
+                    <Image Stretch="Fill" Source="{SvgImage /Assets/Icons/Settings.svg}" />
                 </Button>
                 <Button>
-                    <Image Height="27" Width="27" Stretch="Fill" Source="{SvgImage /Assets/Icons/Help.svg}" />
+                    <Image Stretch="Fill" Source="{SvgImage /Assets/Icons/Help.svg}" />
                 </Button>
             </StackPanel>
         </Panel>
