@@ -10,7 +10,7 @@ namespace netKombucha.ViewModels;
 
 public class MainViewModel : ViewModelBase
 {
-    public MainViewModel(MainWindowViewModel windowViewModel)
+    private MainViewModel(MainWindowViewModel windowViewModel)
     {
         _windowViewModel = windowViewModel;
     }
@@ -57,6 +57,8 @@ public class MainViewModel : ViewModelBase
     public string ConfigurationPackageFileFullName => ConfigurationPackageFile?.Name;
     public string ConfigurationPackageFileShortName => ShortName(ConfigurationPackageFile?.Name);
 
+    public static MainViewModel GetInstance(MainWindowViewModel windowViewModel) => _instance ??= new MainViewModel(windowViewModel);
+
     public async Task SaveFile()
     {
         IsSaveDialogOpen = true;
@@ -96,6 +98,8 @@ public class MainViewModel : ViewModelBase
             _windowViewModel.CurrentStage = ProgressStage.Firmware;
         return Task.CompletedTask;
     }
+
+    private static MainViewModel _instance;
 
     private static readonly IReadOnlyList<FilePickerFileType> FilePickerFileType = new[]
     {

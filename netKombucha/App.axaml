@@ -1,7 +1,6 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="using:netKombucha"
-             xmlns:viewModels="clr-namespace:netKombucha.ViewModels"
              x:Class="netKombucha.App">
     <Application.DataTemplates>
         <local:ViewLocator />
@@ -12,8 +11,6 @@
     </Application.Styles>
 
     <Application.Resources>
-        <viewModels:MainWindowViewModel x:Key="MainWindowViewModel" />
-
         <Color x:Key="Grey">#FF4D5057</Color>
         <Color x:Key="Gold">#FFF8C822</Color>
         <Color x:Key="Blue">#FF00AEEF</Color>

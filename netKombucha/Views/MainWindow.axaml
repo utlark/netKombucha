@@ -5,8 +5,6 @@
         xmlns:views="clr-namespace:netKombucha.Views"
         x:Class="netKombucha.Views.MainWindow"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="480"
-        DataContext="{Binding Source={StaticResource MainWindowViewModel}}"
-        IsEnabled="{Binding !MainViewModel.IsSomeDialogOpen}"
         Icon="/Assets/AppIcon/AppIcon-256.ico"
         Background="{StaticResource Grey}"
         CanResize="False"
@@ -18,7 +16,7 @@
         MinWidth="800"
         Width="800">
 
-    <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+    <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsEnabled="{Binding !MainViewModel.IsSomeDialogOpen}">
         <views:TitleView HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="30,10,30,0" />
         <views:MainView HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="50,0,50,0" />
     </Panel>

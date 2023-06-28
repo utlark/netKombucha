@@ -5,9 +5,9 @@ namespace netKombucha.ViewModels;
 
 public class MainWindowViewModel : ViewModelBase
 {
-    public MainWindowViewModel()
+    private MainWindowViewModel()
     {
-        MainViewModel = new MainViewModel(this);
+        MainViewModel = MainViewModel.GetInstance(this);
     }
 
     public MainViewModel MainViewModel { get; }
@@ -23,6 +23,10 @@ public class MainWindowViewModel : ViewModelBase
             MainViewModel.RaisePropertyChanged(nameof(MainViewModel.IsThirdStepActive));
         }
     }
+
+    public static MainWindowViewModel GetInstance() => _instance ??= new MainWindowViewModel();
+
+    private static MainWindowViewModel _instance;
 
     private ProgressStage _currentStage = ProgressStage.FileSelection;
 }

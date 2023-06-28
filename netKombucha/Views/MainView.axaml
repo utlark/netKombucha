@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="480"
              x:Class="netKombucha.Views.MainView"
-             DataContext="{Binding Source={StaticResource MainWindowViewModel}, Path=MainViewModel}">
+             DataContext="{Binding $parent[Window].DataContext.MainViewModel}">
 
     <UserControl.Styles>
         <Style Selector="StackPanel.FirstStepStack > StackPanel > Button > StackPanel">
