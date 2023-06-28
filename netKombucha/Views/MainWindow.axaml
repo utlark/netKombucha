@@ -1,13 +1,14 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:vm="using:netKombucha.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        IsEnabled="{Binding !IsSomeDialogOpen}"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="480"
-        Background="{StaticResource Grey}"
+        xmlns:views="clr-namespace:netKombucha.Views"
         x:Class="netKombucha.Views.MainWindow"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="480"
+        DataContext="{Binding Source={StaticResource MainWindowViewModel}}"
+        IsEnabled="{Binding !MainViewModel.IsSomeDialogOpen}"
         Icon="/Assets/AppIcon/AppIcon-256.ico"
+        Background="{StaticResource Grey}"
         CanResize="False"
         Title="Kombucha"
         MaxHeight="480"
@@ -17,176 +18,8 @@
         MinWidth="800"
         Width="800">
 
-    <Design.DataContext>
-        <vm:MainWindowViewModel />
-    </Design.DataContext>
-
-    <Window.Styles>
-        <Style Selector="StackPanel.FirstStepStack > StackPanel > Button > StackPanel">
-            <Setter Property="Opacity" Value="0.7" />
-            <Setter Property="OpacityMask" Value="Black" />
-        </Style>
-        <Style Selector="StackPanel.FirstStepStack > StackPanel > Button:pointerover > StackPanel">
-            <Setter Property="Opacity" Value="1" />
-        </Style>
-        <Style Selector="StackPanel.FirstStepStack > StackPanel > Button:pointerover /template/ ContentPresenter">
-            <Setter Property="Background" Value="{StaticResource Blue}" />
-        </Style>
-        <Style Selector="StackPanel.FirstStepStack > StackPanel > Button.Primary">
-            <Setter Property="Background" Value="{StaticResource Blue}" />
-        </Style>
-        <Style Selector="StackPanel.FirstStepStack:pointerover > StackPanel > Button.Primary">
-            <Setter Property="Background" Value="Transparent" />
-        </Style>
-
-        <Style Selector="StackPanel.FileSelected > StackPanel > Button">
-            <Setter Property="Opacity" Value="1" />
-        </Style>
-        <Style Selector="StackPanel.FileSelected > StackPanel > Button:pointerover">
-            <Setter Property="Opacity" Value="0.7" />
-        </Style>
-
-        <Style Selector="Button.ButtonSelected > StackPanel">
-            <Setter Property="Opacity" Value="1" />
-        </Style>
-        <Style Selector="Button.ButtonSelected /template/ ContentPresenter">
-            <Setter Property="Background" Value="{StaticResource Blue}" />
-        </Style>
-
-        <Style Selector="StackPanel.StepStackInactive > Panel">
-            <Setter Property="Opacity" Value="0.4" />
-        </Style>
-        <Style Selector="StackPanel.StepStackInactive > Button">
-            <Setter Property="Cursor" Value="No" />
-            <Setter Property="Background" Value="{StaticResource DarkGray}" />
-        </Style>
-        <Style Selector="StackPanel.StepStackInactive > Button > TextBlock">
-            <Setter Property="Opacity" Value="0.4" />
-        </Style>
-        <Style Selector="StackPanel.StepStackInactive > Button:pressed /template/ ContentPresenter">
-            <Setter Property="Background" Value="{StaticResource DarkGray}" />
-        </Style>
-        <Style Selector="StackPanel.StepStackInactive > Button:disabled /template/ ContentPresenter">
-            <Setter Property="Background" Value="{StaticResource DarkGray}" />
-        </Style>
-        <Style Selector="StackPanel.StepStackInactive > Button:pointerover /template/ ContentPresenter">
-            <Setter Property="Background" Value="{StaticResource DarkGray}" />
-        </Style>
-
-        <Style Selector="StackPanel.StepStackActive > Panel">
-            <Setter Property="Opacity" Value="1" />
-        </Style>
-        <Style Selector="StackPanel.StepStackActive > Button">
-            <Setter Property="Background" Value="{StaticResource Blue}" />
-        </Style>
-        <Style Selector="StackPanel.StepStackActive > Button > TextBlock">
-            <Setter Property="Opacity" Value="1" />
-        </Style>
-        <Style Selector="StackPanel.StepStackActive > Button:pressed /template/ ContentPresenter">
-            <Setter Property="Background" Value="{StaticResource Blue}" />
-        </Style>
-        <Style Selector="StackPanel.StepStackActive > Button:disabled /template/ ContentPresenter">
-            <Setter Property="Background" Value="{StaticResource Blue}" />
-        </Style>
-        <Style Selector="StackPanel.StepStackActive > Button:pointerover /template/ ContentPresenter">
-            <Setter Property="Background" Value="{StaticResource TransparentBlue}" />
-        </Style>
-    </Window.Styles>
-
     <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-        <!-- Tittle -->
-        <Panel HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="30,10,30,0">
-            <!-- Icon -->
-            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Orientation="Horizontal" Spacing="0">
-                <Image Height="27" Width="27" Stretch="Fill" Source="{SvgImage /Assets/Icons/TitleIcon.svg}" />
-                <TextBlock VerticalAlignment="Center" TextAlignment="Center"
-                           FontFamily="{StaticResource ExtraBold}" FontSize="16" Foreground="{StaticResource Gold}" Text="Kombucha" />
-            </StackPanel>
-            <!-- SettingsHelp -->
-            <StackPanel HorizontalAlignment="Right" VerticalAlignment="Top" Orientation="Horizontal" Spacing="20">
-                <Button Classes="OpacityOver" Height="27" Width="27">
-                    <Image Stretch="Fill" Source="{SvgImage /Assets/Icons/Settings.svg}" />
-                </Button>
-                <Button Classes="OpacityOver" Height="27" Width="27">
-                    <Image Stretch="Fill" Source="{SvgImage /Assets/Icons/Help.svg}" />
-                </Button>
-            </StackPanel>
-        </Panel>
-        <!-- Body -->
-        <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="50,0,50,0" Orientation="Horizontal" Spacing="50">
-            <!-- FirstStep -->
-            <StackPanel Classes="FirstStepStack" VerticalAlignment="Top" IsVisible="{Binding IsFirstStepActive}" Orientation="Vertical" Spacing="30">
-                <Image Width="50" Height="50" Stretch="Fill" Source="{SvgImage /Assets/Icons/FirstStepIcon.svg}" Margin="-2,0,0,0" />
-                <StackPanel Orientation="Vertical" Height="98" Spacing="0">
-                    <Button Classes="Primary" Classes.ButtonSelected="{Binding IsSaveDialogOpen}" Width="200" Height="49" CornerRadius="25"
-                            Command="{Binding SaveFile}">
-                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal" Spacing="4">
-                            <Image Height="20" Width="20" Stretch="Fill" Source="{SvgImage /Assets/Icons/DownloadArrow.svg}" />
-                            <TextBlock VerticalAlignment="Center" TextAlignment="Left" Width="124" Height="16"
-                                       FontFamily="{StaticResource Bold}" FontSize="12" Text="Скачать настройки" />
-                        </StackPanel>
-                    </Button>
-
-                    <Button Classes.ButtonSelected="{Binding IsOpenDialogOpen}" Width="200" Height="49" CornerRadius="25"
-                            Command="{Binding OpenFile}">
-                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal" Spacing="4">
-                            <Image Height="20" Width="20" Stretch="Fill" Source="{SvgImage /Assets/Icons/UploadArrow.svg}" />
-                            <TextBlock VerticalAlignment="Center" TextAlignment="Left" Width="124" Height="16"
-                                       FontFamily="{StaticResource Bold}" FontSize="12" Text="Зашить настройки" />
-                        </StackPanel>
-                    </Button>
-                </StackPanel>
-            </StackPanel>
-
-            <!-- FirstStep-FileSelected -->
-            <StackPanel Classes="FileSelected" VerticalAlignment="Top" Orientation="Vertical" IsVisible="{Binding !IsFirstStepActive}" Spacing="30">
-                <Image Width="50" Height="50" Stretch="Fill" Source="{SvgImage /Assets/Icons/FirstStepIcon.svg}" Margin="-2,0,0,0" />
-                <StackPanel Orientation="Vertical" Height="98" Spacing="0">
-                    <Button Classes="Primary" Width="200" Height="49" ToolTip.ShowDelay="100" ToolTip.VerticalOffset="-5" ToolTip.Placement="Top">
-                        <ToolTip.Tip>
-                            <TextBlock VerticalAlignment="Center" TextAlignment="Center"
-                                       FontFamily="{StaticResource Regular}" FontSize="12" Foreground="#FF000000"
-                                       Text="{Binding ConfigurationPackageFileFullName}" />
-                        </ToolTip.Tip>
-                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Left"
-                                   FontFamily="{StaticResource Bold}" FontSize="14"
-                                   Text="{Binding ConfigurationPackageFileShortName}" />
-                    </Button>
-
-                    <Button Width="200" Height="30" Command="{Binding RemoveChose}">
-                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Left"
-                                   FontFamily="{StaticResource Bold}" FontSize="12" Foreground="{StaticResource Blue}" Text="Удалить" />
-                    </Button>
-                </StackPanel>
-            </StackPanel>
-
-            <!-- SecondStep -->
-            <StackPanel Classes.StepStackActive="{Binding IsSecondStepActive}"
-                        Classes.StepStackInactive="{Binding !IsSecondStepActive}" VerticalAlignment="Top" Orientation="Vertical" Spacing="30">
-                <Panel>
-                    <Line VerticalAlignment="Center" StartPoint="-86,0" EndPoint="35,0" Stroke="#FFFFFF" StrokeThickness="2" />
-                    <Image VerticalAlignment="Center" Width="50" Height="50" Stretch="Fill" Source="{SvgImage /Assets/Icons/SecondStepIcon.svg}" />
-                </Panel>
-
-                <Button Width="200" Height="49" CornerRadius="25" Command="{Binding CameraSetup}">
-                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"
-                               FontFamily="{StaticResource Bold}" FontSize="12" Text="Задать камеры" />
-                </Button>
-            </StackPanel>
-
-            <!-- ThirdStep -->
-            <StackPanel Classes.StepStackActive="{Binding IsThirdStepActive}"
-                        Classes.StepStackInactive="{Binding !IsThirdStepActive}" VerticalAlignment="Top" Orientation="Vertical" Spacing="30">
-                <Panel>
-                    <Line VerticalAlignment="Center" StartPoint="-86,0" EndPoint="35,0" Stroke="#FFFFFF" StrokeThickness="2" />
-                    <Image VerticalAlignment="Center" Width="50" Height="50" Stretch="Fill" Source="{SvgImage /Assets/Icons/ThirdStepIcon.svg}" />
-                </Panel>
-
-                <Button Width="200" Height="49" CornerRadius="25">
-                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"
-                               FontFamily="{StaticResource Bold}" FontSize="12" Text="Начать" />
-                </Button>
-            </StackPanel>
-        </StackPanel>
+        <views:TitleView HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="30,10,30,0" />
+        <views:MainView HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="50,0,50,0" />
     </Panel>
 </Window>

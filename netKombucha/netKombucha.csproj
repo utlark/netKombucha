@@ -9,27 +9,38 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Folder Include="Models\" />
-        <AvaloniaResource Include="Assets\**" />
-        <None Remove=".gitignore" />
+        <Folder Include="Models\"/>
+        <AvaloniaResource Include="Assets\**"/>
+        <None Remove=".gitignore"/>
     </ItemGroup>
 
     <ItemGroup>
-        <TrimmerRootDescriptor Include="Roots.xml" />
+        <TrimmerRootDescriptor Include="Roots.xml"/>
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Avalonia" Version="11.0.0-rc1.1" />
-        <PackageReference Include="Avalonia.Desktop" Version="11.0.0-rc1.1" />
+        <PackageReference Include="Avalonia" Version="11.0.0-rc1.1"/>
+        <PackageReference Include="Avalonia.Desktop" Version="11.0.0-rc1.1"/>
         <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
-        <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.0-rc1.1" />
-        <PackageReference Include="Avalonia.ReactiveUI" Version="11.0.0-rc1.1" />
-        <PackageReference Include="Avalonia.Svg.Skia" Version="11.0.0-rc1.1" />
-        <PackageReference Include="Avalonia.Themes.Fluent" Version="11.0.0-rc1.1" />
-        <PackageReference Include="Avalonia.Themes.Simple" Version="11.0.0-rc1.1" />
+        <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.0-rc1.1"/>
+        <PackageReference Include="Avalonia.ReactiveUI" Version="11.0.0-rc1.1"/>
+        <PackageReference Include="Avalonia.Svg.Skia" Version="11.0.0-rc1.1"/>
+        <PackageReference Include="Avalonia.Themes.Fluent" Version="11.0.0-rc1.1"/>
+        <PackageReference Include="Avalonia.Themes.Simple" Version="11.0.0-rc1.1"/>
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Novicam\Novicam.csproj" />
+        <ProjectReference Include="..\Novicam\Novicam.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Compile Update="Views\TitleView.axaml.cs">
+            <DependentUpon>Title.axaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\MainView.axaml.cs">
+            <DependentUpon>MainPageControl.axaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
     </ItemGroup>
 </Project>

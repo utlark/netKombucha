@@ -1,0 +1,24 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="480"
+             x:Class="netKombucha.Views.TitleView">
+
+    <Panel>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Orientation="Horizontal" Spacing="0">
+            <Image Height="27" Width="27" Stretch="Fill" Source="{SvgImage /Assets/Icons/TitleIcon.svg}" />
+            <TextBlock VerticalAlignment="Center" TextAlignment="Center"
+                       FontFamily="{StaticResource ExtraBold}" FontSize="16" Foreground="{StaticResource Gold}" Text="Kombucha" />
+        </StackPanel>
+
+        <StackPanel HorizontalAlignment="Right" VerticalAlignment="Top" Orientation="Horizontal" Spacing="20">
+            <Button Classes="OpacityOver" Height="27" Width="27">
+                <Image Stretch="Fill" Source="{SvgImage /Assets/Icons/Settings.svg}" />
+            </Button>
+            <Button Classes="OpacityOver" Height="27" Width="27">
+                <Image Stretch="Fill" Source="{SvgImage /Assets/Icons/Help.svg}" />
+            </Button>
+        </StackPanel>
+    </Panel>
+</UserControl>
