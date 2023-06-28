@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<svg width="256px" height="256px" viewBox="0 0 256 256" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
-  <g id="ThirdStepIcon">
-    <path d="M256 0L256 0L256 256L0 256L0 0L256 0Z" id="ThirdStepIcon" fill="none" stroke="none" />
-    <path d="M0 0L256 0L256 256L0 256L0 0Z" id="Back" fill="none" fill-rule="evenodd" stroke="none" />
-    <path d="M167.884 25.6L104.107 25.6L56.32 120.32L120.036 120.32L101.452 230.4L199.68 81.92L141.274 81.92L167.884 25.6Z" id="Icon" fill="#FFFFFF" fill-rule="evenodd" stroke="none" />
-  </g>
+<svg width="256px" height="256px" viewBox="0 0 256 256" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <g id="ThirdStepIcon">
+        <path d="M256 0L256 0L256 256L0 256L0 0L256 0Z" id="ThirdStepIcon" fill="none" stroke="none"/>
+        <path d="M0 0L256 0L256 256L0 256L0 0Z" id="Back" fill="none" fill-rule="evenodd" stroke="none"/>
+        <path d="M167.884 25.6L104.107 25.6L56.32 120.32L120.036 120.32L101.452 230.4L199.68 81.92L141.274 81.92L167.884 25.6Z" id="Icon" fill="#FFFFFF" fill-rule="evenodd"
+              stroke="none"/>
+    </g>
 </svg>
