@@ -1,6 +1,7 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="using:netKombucha"
+             xmlns:viewModels="clr-namespace:netKombucha.ViewModels"
              x:Class="netKombucha.App">
     <Application.DataTemplates>
         <local:ViewLocator />
@@ -8,7 +9,25 @@
 
     <Application.Styles>
         <FluentTheme />
+    </Application.Styles>
 
+    <Application.Resources>
+        <viewModels:MainWindowViewModel x:Key="MainWindowViewModel" />
+
+        <Color x:Key="Grey">#FF4D5057</Color>
+        <Color x:Key="Gold">#FFF8C822</Color>
+        <Color x:Key="Blue">#FF00AEEF</Color>
+        <Color x:Key="White">#FFFFFFFF</Color>
+        <Color x:Key="DarkGray">#FF3A3C41</Color>
+        <Color x:Key="TransparentBlue">#9900AEEF</Color>
+        <Color x:Key="TransparentWhite">#99FFFFFF</Color>
+
+        <FontFamily x:Key="Regular">/Assets/Fonts/NotoSans-Regular.ttf#Noto Sans</FontFamily>
+        <FontFamily x:Key="Bold">/Assets/Fonts/NotoSans-Bold.ttf#Noto Sans</FontFamily>
+        <FontFamily x:Key="ExtraBold">/Assets/Fonts/NotoSans-ExtraBold.ttf#Noto Sans</FontFamily>
+    </Application.Resources>
+
+    <Application.Styles>
         <Style Selector="Image">
             <Setter Property="OpacityMask" Value="Black" />
         </Style>
@@ -42,20 +61,4 @@
             <Setter Property="Opacity" Value="0.7" />
         </Style>
     </Application.Styles>
-
-    <Application.Resources>
-        <ResourceDictionary>
-            <Color x:Key="Grey">#FF4D5057</Color>
-            <Color x:Key="Gold">#FFF8C822</Color>
-            <Color x:Key="Blue">#FF00AEEF</Color>
-            <Color x:Key="White">#FFFFFFFF</Color>
-            <Color x:Key="DarkGray">#FF3A3C41</Color>
-            <Color x:Key="TransparentBlue">#9900AEEF</Color>
-            <Color x:Key="TransparentWhite">#99FFFFFF</Color>
-
-            <FontFamily x:Key="Regular">/Assets/Fonts/NotoSans-Regular.ttf#Noto Sans</FontFamily>
-            <FontFamily x:Key="Bold">/Assets/Fonts/NotoSans-Bold.ttf#Noto Sans</FontFamily>
-            <FontFamily x:Key="ExtraBold">/Assets/Fonts/NotoSans-ExtraBold.ttf#Noto Sans</FontFamily>
-        </ResourceDictionary>
-    </Application.Resources>
 </Application>
