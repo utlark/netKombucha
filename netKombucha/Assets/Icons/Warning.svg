@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="256px" height="256px" viewBox="0 0 256 256" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <path d="M256 0L256 0L256 256L0 256L0 0L256 0Z" id="path_1"/>
+        <clipPath id="clip_1">
+            <use xlink:href="#path_1"/>
+        </clipPath>
+    </defs>
+    <g id="Warning 2" clip-path="url(#clip_1)">
+        <path d="M256 0L256 0L256 256L0 256L0 0L256 0Z" id="Warning-2" fill="none" stroke="none"/>
+        <path d="M0 246.155L128.001 9.84615L256.001 246.155L0 246.155ZM15.7548 236.309L128.001 31.5077L240.248 236.309L15.7548 236.309ZM118.154 78.7692L137.846 78.7692L137.846 177.231L118.154 177.231L118.154 78.7692ZM118.154 196.923L137.846 196.923L137.846 216.615L118.154 216.615L118.154 196.923Z"
+              id="Icon" fill="#FEBF52" fill-rule="evenodd" stroke="none"/>
+    </g>
+</svg>

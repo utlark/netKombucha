@@ -6,6 +6,8 @@ using Avalonia.Platform.Storage;
 using netKombucha.Models;
 using ReactiveUI;
 
+// ReSharper disable MemberCanBePrivate.Global
+
 namespace netKombucha.ViewModels;
 
 public class MainViewModel : ViewModelBase
@@ -103,7 +105,7 @@ public class MainViewModel : ViewModelBase
 
     private static readonly IReadOnlyList<FilePickerFileType> FilePickerFileType = new[]
     {
-        new FilePickerFileType(".ccp") { Patterns = new[] { "*.ccp" } },
+        new FilePickerFileType(".scp") { Patterns = new[] { "*.scp" } },
         new FilePickerFileType(".zip") { Patterns = new[] { "*.zip" } },
         new FilePickerFileType(".png") { Patterns = new[] { "*.png" } }
     };
@@ -124,6 +126,8 @@ public class MainViewModel : ViewModelBase
 
     private readonly FilePickerSaveOptions _filePickerSaveOptions = new()
     {
+        SuggestedFileName = "sautCameraPackage",
+        DefaultExtension = FilePickerFileType.First().Name,
         FileTypeChoices = FilePickerFileType,
         ShowOverwritePrompt = true
     };
