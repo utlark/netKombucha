@@ -9,12 +9,16 @@ namespace netKombucha.ViewModels;
 
 public class WarningViewModel : ViewModelBase
 {
-    public WarningViewModel(string warningText)
+    public WarningViewModel(string title, string warningText)
     {
+        Title = title;
         WarningText = warningText;
+
         _warningDialog = new WarningDialog();
         _warningDialog.DataContext = this;
     }
+
+    public string Title { get; }
 
     public string WarningText { get; }
 

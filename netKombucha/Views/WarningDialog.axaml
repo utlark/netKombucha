@@ -2,6 +2,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:netKombucha.ViewModels" x:DataType="vm:WarningViewModel"
         x:Class="netKombucha.Views.WarningDialog" CanResize="False"
         mc:Ignorable="d" d:DesignWidth="500" d:DesignHeight="150"
         MaxHeight="150" MinHeight="150" Height="480"
@@ -9,7 +10,7 @@
         Icon="/Assets/AppIcon/AppIcon-256.ico"
         Background="{StaticResource Grey}"
         WindowStartupLocation="CenterOwner"
-        Title="Сохранить - Kombucha">
+        Title="{Binding Title}">
 
     <Window.Styles>
         <Style Selector="Button.Warning">
@@ -23,13 +24,11 @@
     <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Spacing="10" Margin="10">
         <StackPanel Height="90" Width="480" Orientation="Horizontal" Spacing="10">
             <Image VerticalAlignment="Top" Height="52" Width="52" Stretch="Fill" Source="{SvgImage /Assets/Icons/Warning.svg}" />
-            <TextBlock VerticalAlignment="Top" Height="90" Width="420" TextWrapping="Wrap" TextAlignment="Left"
-                       FontFamily="{StaticResource Regular}" FontSize="13" Text="{Binding WarningText}" />
+            <TextBlock VerticalAlignment="Top" Height="90" Width="420" TextWrapping="Wrap" TextAlignment="Left" FontSize="13" Text="{Binding WarningText}" />
         </StackPanel>
         <Panel Height="30" Width="480">
             <Button Classes="Warning" VerticalAlignment="Center" HorizontalAlignment="Right" Height="30" Width="80" CornerRadius="5" Command="{Binding OkButton}">
-                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Left"
-                           FontFamily="{StaticResource Regular}" FontSize="15" Text="Ок" />
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Left" FontSize="15" Text="Ок" />
             </Button>
         </Panel>
     </StackPanel>

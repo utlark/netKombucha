@@ -1,5 +1,6 @@
-﻿using netKombucha.Models;
-using ReactiveUI;
+﻿using ReactiveUI;
+
+// ReSharper disable MemberCanBePrivate.Global
 
 namespace netKombucha.ViewModels;
 
@@ -7,27 +8,20 @@ public class MainWindowViewModel : ViewModelBase
 {
     private MainWindowViewModel()
     {
-        MainViewModel = MainViewModel.GetInstance(this);
+        Content = MainViewModel = MainViewModel.GetInstance();
+    }
+
+    public ViewModelBase Content
+    {
+        get => _content;
+        set => this.RaiseAndSetIfChanged(ref _content, value);
     }
 
     public MainViewModel MainViewModel { get; }
-
-    public ProgressStage CurrentStage
-    {
-        get => _currentStage;
-        set
-        {
-            this.RaiseAndSetIfChanged(ref _currentStage, value);
-            MainViewModel.RaisePropertyChanged(nameof(MainViewModel.IsFirstStepActive));
-            MainViewModel.RaisePropertyChanged(nameof(MainViewModel.IsSecondStepActive));
-            MainViewModel.RaisePropertyChanged(nameof(MainViewModel.IsThirdStepActive));
-            MainViewModel.RaisePropertyChanged(nameof(MainViewModel.IsFileInfoOpen));
-        }
-    }
 
     public static MainWindowViewModel GetInstance() => _instance ??= new MainWindowViewModel();
 
     private static MainWindowViewModel _instance;
 
-    private ProgressStage _currentStage = ProgressStage.FileSelection;
+    private ViewModelBase _content;
 }

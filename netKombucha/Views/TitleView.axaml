@@ -8,8 +8,7 @@
     <Panel>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Orientation="Horizontal" Spacing="0">
             <Image Height="27" Width="27" Stretch="Fill" Source="{SvgImage /Assets/Icons/TitleIcon.svg}" />
-            <TextBlock VerticalAlignment="Center" TextAlignment="Center"
-                       FontFamily="{StaticResource ExtraBold}" FontSize="16" Foreground="{StaticResource Gold}" Text="Kombucha" />
+            <TextBlock VerticalAlignment="Center" TextAlignment="Center" FontFamily="{StaticResource ExtraBold}" FontSize="16" Foreground="{StaticResource Gold}" Text="Kombucha" />
         </StackPanel>
 
         <StackPanel HorizontalAlignment="Right" VerticalAlignment="Top" Orientation="Horizontal" Spacing="20">

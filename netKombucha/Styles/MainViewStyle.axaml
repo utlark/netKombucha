@@ -1,0 +1,73 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style Selector="StackPanel.FirstStepStack > StackPanel > Button > StackPanel">
+        <Setter Property="Opacity" Value="0.7" />
+        <Setter Property="OpacityMask" Value="Black" />
+    </Style>
+    <Style Selector="StackPanel.FirstStepStack > StackPanel > Button:pointerover > StackPanel">
+        <Setter Property="Opacity" Value="1" />
+    </Style>
+    <Style Selector="StackPanel.FirstStepStack > StackPanel > Button:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="{StaticResource Blue}" />
+    </Style>
+    <Style Selector="StackPanel.FirstStepStack > StackPanel > Button.Primary">
+        <Setter Property="Background" Value="{StaticResource Blue}" />
+    </Style>
+    <Style Selector="StackPanel.FirstStepStack:pointerover > StackPanel > Button.Primary">
+        <Setter Property="Background" Value="Transparent" />
+    </Style>
+
+    <Style Selector="StackPanel.FileSelected > StackPanel > Button">
+        <Setter Property="Opacity" Value="1" />
+    </Style>
+    <Style Selector="StackPanel.FileSelected > StackPanel > Button:pointerover">
+        <Setter Property="Opacity" Value="0.7" />
+    </Style>
+
+    <Style Selector="Button.ButtonSelected > StackPanel">
+        <Setter Property="Opacity" Value="1" />
+    </Style>
+    <Style Selector="Button.ButtonSelected /template/ ContentPresenter">
+        <Setter Property="Background" Value="{StaticResource Blue}" />
+    </Style>
+
+    <Style Selector="StackPanel.StepStackInactive > Panel">
+        <Setter Property="Opacity" Value="0.4" />
+    </Style>
+    <Style Selector="StackPanel.StepStackInactive > Button">
+        <Setter Property="Cursor" Value="No" />
+        <Setter Property="Background" Value="{StaticResource DarkGray}" />
+    </Style>
+    <Style Selector="StackPanel.StepStackInactive > Button > TextBlock">
+        <Setter Property="Opacity" Value="0.4" />
+    </Style>
+    <Style Selector="StackPanel.StepStackInactive > Button:pressed /template/ ContentPresenter">
+        <Setter Property="Background" Value="{StaticResource DarkGray}" />
+    </Style>
+    <Style Selector="StackPanel.StepStackInactive > Button:disabled /template/ ContentPresenter">
+        <Setter Property="Background" Value="{StaticResource DarkGray}" />
+    </Style>
+    <Style Selector="StackPanel.StepStackInactive > Button:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="{StaticResource DarkGray}" />
+    </Style>
+
+    <Style Selector="StackPanel.StepStackActive > Panel">
+        <Setter Property="Opacity" Value="1" />
+    </Style>
+    <Style Selector="StackPanel.StepStackActive > Button">
+        <Setter Property="Background" Value="{StaticResource Blue}" />
+    </Style>
+    <Style Selector="StackPanel.StepStackActive > Button > TextBlock">
+        <Setter Property="Opacity" Value="1" />
+    </Style>
+    <Style Selector="StackPanel.StepStackActive > Button:pressed /template/ ContentPresenter">
+        <Setter Property="Background" Value="{StaticResource Blue}" />
+    </Style>
+    <Style Selector="StackPanel.StepStackActive > Button:disabled /template/ ContentPresenter">
+        <Setter Property="Background" Value="{StaticResource Blue}" />
+    </Style>
+    <Style Selector="StackPanel.StepStackActive > Button:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="{StaticResource DarkBlue}" />
+    </Style>
+</Styles>

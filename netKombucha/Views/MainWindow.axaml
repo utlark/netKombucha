@@ -2,18 +2,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:views="clr-namespace:netKombucha.Views"
+        xmlns:vm="clr-namespace:netKombucha.ViewModels" x:DataType="vm:MainWindowViewModel"
         x:Class="netKombucha.Views.MainWindow" CanResize="False"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="480"
         MaxHeight="480" MinHeight="480" Height="480"
         MaxWidth="800" MinWidth="800" Width="800"
         Icon="/Assets/AppIcon/AppIcon-256.ico"
         Background="{StaticResource Grey}"
+        Content="{Binding Content}"
         Title="Kombucha">
-
-    <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsEnabled="{Binding !MainViewModel.IsSomeDialogOpen}">
-        <views:TitleView HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="30,10,30,0" />
-        <views:MainView HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="50,0,50,0" />
-        <views:FileInfoView HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="55" />
-    </Panel>
 </Window>

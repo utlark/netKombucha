@@ -1,10 +1,8 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Avalonia.Controls;
 using Avalonia.Platform.Storage;
-using netKombucha.Models;
 using ReactiveUI;
 
 // ReSharper disable MemberCanBePrivate.Global
@@ -13,106 +11,58 @@ namespace netKombucha.ViewModels;
 
 public class MainViewModel : ViewModelBase
 {
-    private MainViewModel(MainWindowViewModel windowViewModel)
+    private MainViewModel()
     {
-        _windowViewModel = windowViewModel;
     }
-
-    public bool IsFirstStepActive => (int)_windowViewModel.CurrentStage == 0 && (int)_windowViewModel.CurrentStage != 3;
-
-    public bool IsSecondStepActive => (int)_windowViewModel.CurrentStage >= 1 && (int)_windowViewModel.CurrentStage != 3;
-
-    public bool IsThirdStepActive => (int)_windowViewModel.CurrentStage >= 2 && (int)_windowViewModel.CurrentStage != 3;
-
-    public bool IsFileInfoOpen => (int)_windowViewModel.CurrentStage == 3;
 
     public bool IsOpenDialogOpen
     {
         get => _isOpenDialogOpen;
-        set
-        {
-            this.RaiseAndSetIfChanged(ref _isOpenDialogOpen, value);
-            this.RaisePropertyChanged(nameof(IsSomeDialogOpen));
-        }
+        set => this.RaiseAndSetIfChanged(ref _isOpenDialogOpen, value);
     }
 
     public bool IsSaveDialogOpen
     {
         get => _isSaveDialogOpen;
-        set
-        {
-            this.RaiseAndSetIfChanged(ref _isSaveDialogOpen, value);
-            this.RaisePropertyChanged(nameof(IsSomeDialogOpen));
-        }
+        set => this.RaiseAndSetIfChanged(ref _isSaveDialogOpen, value);
     }
-
-    public bool IsSomeDialogOpen => IsSaveDialogOpen || IsOpenDialogOpen;
 
     public IStorageFile ConfigurationPackageFile
     {
         get => _configurationPackageFile;
-        set
-        {
-            this.RaiseAndSetIfChanged(ref _configurationPackageFile, value);
-            this.RaisePropertyChanged(nameof(ConfigurationPackageFileShortName));
-            this.RaisePropertyChanged(nameof(ConfigurationPackageFileFullName));
-            this.RaisePropertyChanged(nameof(ConfigurationPackagePath));
-        }
+        set => this.RaiseAndSetIfChanged(ref _configurationPackageFile, value);
     }
 
-    public string ConfigurationPackageFileFullName => ConfigurationPackageFile?.Name;
-    public string ConfigurationPackageFileShortName => ShortName(ConfigurationPackageFile?.Name);
-    public string ConfigurationPackagePath => Uri.UnescapeDataString(ConfigurationPackageFile.Path.AbsolutePath);
-
-    public static MainViewModel GetInstance(MainWindowViewModel windowViewModel) => _instance ??= new MainViewModel(windowViewModel);
+    public static MainViewModel GetInstance() => _instance ??= new MainViewModel();
 
     public async Task SaveFile()
     {
         IsSaveDialogOpen = true;
-        var result = await _window.StorageProvider.SaveFilePickerAsync(_filePickerSaveOptions);
-        if (result != null)
-        {
-            ConfigurationPackageFile = result;
-            _windowViewModel.CurrentStage = ProgressStage.CamerasSetup;
-        }
-
+        ConfigurationPackageFile = await _window.StorageProvider.SaveFilePickerAsync(_filePickerSaveOptions);
         IsSaveDialogOpen = false;
     }
 
     public async Task OpenFile()
     {
         IsOpenDialogOpen = true;
-        var result = await _window.StorageProvider.OpenFilePickerAsync(_filePickerOpenOptions);
-        if (result.Count > 0)
-        {
-            ConfigurationPackageFile = result.First();
-            _windowViewModel.CurrentStage = ProgressStage.CamerasSetup;
-        }
-
+        ConfigurationPackageFile = (await _window.StorageProvider.OpenFilePickerAsync(_filePickerOpenOptions)).FirstOrDefault();
         IsOpenDialogOpen = false;
     }
 
-    public async Task OpenFileInfo()
+    public Task OpenFileInfo()
     {
-        _windowViewModel.CurrentStage = ProgressStage.FileInfo;
-    }
-    
-    public async Task CloseFileInfo()
-    {
-        _windowViewModel.CurrentStage = ProgressStage.CamerasSetup;
+        MainWindowViewModel.GetInstance().Content = new FileInfoViewModel(ConfigurationPackageFile);
+        return Task.CompletedTask;
     }
 
     public Task RemoveChose()
     {
         ConfigurationPackageFile = null;
-        _windowViewModel.CurrentStage = ProgressStage.FileSelection;
         return Task.CompletedTask;
     }
 
     public Task CameraSetup()
     {
-        if (ConfigurationPackageFile != null && _windowViewModel.CurrentStage == ProgressStage.CamerasSetup)
-            _windowViewModel.CurrentStage = ProgressStage.Firmware;
         return Task.CompletedTask;
     }
 
@@ -124,8 +74,6 @@ public class MainViewModel : ViewModelBase
         new FilePickerFileType(".zip") { Patterns = new[] { "*.zip" } },
         new FilePickerFileType(".png") { Patterns = new[] { "*.png" } }
     };
-
-    private readonly MainWindowViewModel _windowViewModel;
 
     private bool _isOpenDialogOpen;
     private bool _isSaveDialogOpen;
@@ -146,11 +94,4 @@ public class MainViewModel : ViewModelBase
         FileTypeChoices = FilePickerFileType,
         ShowOverwritePrompt = true
     };
-
-    private static string ShortName(string fileName)
-    {
-        if (string.IsNullOrEmpty(fileName) || fileName.Length <= 21)
-            return fileName;
-        return !string.IsNullOrEmpty(fileName) ? $"{fileName[..9]}...{fileName[^9..]}" : fileName;
-    }
 }
