@@ -74,7 +74,7 @@
             <Setter Property="Background" Value="{StaticResource Blue}" />
         </Style>
         <Style Selector="StackPanel.StepStackActive > Button:pointerover /template/ ContentPresenter">
-            <Setter Property="Background" Value="{StaticResource TransparentBlue}" />
+            <Setter Property="Background" Value="{StaticResource DarkBlue}" />
         </Style>
     </UserControl.Styles>
 

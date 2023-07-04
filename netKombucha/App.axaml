@@ -15,8 +15,10 @@
         <Color x:Key="Gold">#FFF8C822</Color>
         <Color x:Key="Blue">#FF00AEEF</Color>
         <Color x:Key="White">#FFFFFFFF</Color>
+        <Color x:Key="Black">#FF000000</Color>
+        <Color x:Key="TextGray">#FF444444</Color>
         <Color x:Key="DarkGray">#FF3A3C41</Color>
-        <Color x:Key="TransparentBlue">#9900AEEF</Color>
+        <Color x:Key="DarkBlue">#FF0093CD</Color>
         <Color x:Key="TransparentWhite">#99FFFFFF</Color>
 
         <FontFamily x:Key="Regular">/Assets/Fonts/NotoSans-Regular.ttf#Noto Sans</FontFamily>

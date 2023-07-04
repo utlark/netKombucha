@@ -16,7 +16,7 @@
             <Setter Property="Background" Value="{StaticResource Blue}" />
         </Style>
         <Style Selector="Button.Warning:pointerover /template/ ContentPresenter">
-            <Setter Property="Background" Value="{StaticResource TransparentBlue}" />
+            <Setter Property="Background" Value="{StaticResource DarkBlue}" />
         </Style>
     </Window.Styles>
 
