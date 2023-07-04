@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,11 +18,13 @@ public class MainViewModel : ViewModelBase
         _windowViewModel = windowViewModel;
     }
 
-    public bool IsFirstStepActive => (int)_windowViewModel.CurrentStage == 0;
+    public bool IsFirstStepActive => (int)_windowViewModel.CurrentStage == 0 && (int)_windowViewModel.CurrentStage != 3;
 
-    public bool IsSecondStepActive => (int)_windowViewModel.CurrentStage >= 1;
+    public bool IsSecondStepActive => (int)_windowViewModel.CurrentStage >= 1 && (int)_windowViewModel.CurrentStage != 3;
 
-    public bool IsThirdStepActive => (int)_windowViewModel.CurrentStage >= 2;
+    public bool IsThirdStepActive => (int)_windowViewModel.CurrentStage >= 2 && (int)_windowViewModel.CurrentStage != 3;
+
+    public bool IsFileInfoOpen => (int)_windowViewModel.CurrentStage == 3;
 
     public bool IsOpenDialogOpen
     {
@@ -53,11 +56,13 @@ public class MainViewModel : ViewModelBase
             this.RaiseAndSetIfChanged(ref _configurationPackageFile, value);
             this.RaisePropertyChanged(nameof(ConfigurationPackageFileShortName));
             this.RaisePropertyChanged(nameof(ConfigurationPackageFileFullName));
+            this.RaisePropertyChanged(nameof(ConfigurationPackagePath));
         }
     }
 
     public string ConfigurationPackageFileFullName => ConfigurationPackageFile?.Name;
     public string ConfigurationPackageFileShortName => ShortName(ConfigurationPackageFile?.Name);
+    public string ConfigurationPackagePath => Uri.UnescapeDataString(ConfigurationPackageFile.Path.AbsolutePath);
 
     public static MainViewModel GetInstance(MainWindowViewModel windowViewModel) => _instance ??= new MainViewModel(windowViewModel);
 
@@ -85,6 +90,16 @@ public class MainViewModel : ViewModelBase
         }
 
         IsOpenDialogOpen = false;
+    }
+
+    public async Task OpenFileInfo()
+    {
+        _windowViewModel.CurrentStage = ProgressStage.FileInfo;
+    }
+    
+    public async Task CloseFileInfo()
+    {
+        _windowViewModel.CurrentStage = ProgressStage.CamerasSetup;
     }
 
     public Task RemoveChose()

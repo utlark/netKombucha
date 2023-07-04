@@ -14,5 +14,6 @@
     <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsEnabled="{Binding !MainViewModel.IsSomeDialogOpen}">
         <views:TitleView HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="30,10,30,0" />
         <views:MainView HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="50,0,50,0" />
+        <views:FileInfoView HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="55" />
     </Panel>
 </Window>

@@ -107,7 +107,7 @@
         <StackPanel Classes="FileSelected" VerticalAlignment="Top" Orientation="Vertical" IsVisible="{Binding !IsFirstStepActive}" Spacing="30">
             <Image Width="50" Height="50" Stretch="Fill" Source="{SvgImage /Assets/Icons/FirstStepIcon.svg}" Margin="-2,0,0,0" />
             <StackPanel Orientation="Vertical" Height="98" Spacing="0">
-                <Button Classes="Primary" Width="200" Height="49" ToolTip.ShowDelay="100" ToolTip.VerticalOffset="-5" ToolTip.Placement="Top">
+                <Button Classes="Primary" Width="200" Height="49" ToolTip.ShowDelay="100" ToolTip.VerticalOffset="-5" ToolTip.Placement="Top" Command="{Binding OpenFileInfo}">
                     <ToolTip.Tip>
                         <TextBlock VerticalAlignment="Center" TextAlignment="Center"
                                    FontFamily="{StaticResource Regular}" FontSize="12" Foreground="#FF000000"

@@ -21,6 +21,7 @@ public class MainWindowViewModel : ViewModelBase
             MainViewModel.RaisePropertyChanged(nameof(MainViewModel.IsFirstStepActive));
             MainViewModel.RaisePropertyChanged(nameof(MainViewModel.IsSecondStepActive));
             MainViewModel.RaisePropertyChanged(nameof(MainViewModel.IsThirdStepActive));
+            MainViewModel.RaisePropertyChanged(nameof(MainViewModel.IsFileInfoOpen));
         }
     }
 
