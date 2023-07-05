@@ -1,7 +1,5 @@
 ﻿using ReactiveUI;
 
-// ReSharper disable MemberCanBePrivate.Global
-
 namespace netKombucha.ViewModels;
 
 public class MainWindowViewModel : ViewModelBase

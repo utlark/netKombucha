@@ -5,10 +5,23 @@
         xmlns:vm="clr-namespace:netKombucha.ViewModels" x:DataType="vm:MainWindowViewModel"
         x:Class="netKombucha.Views.MainWindow" CanResize="False"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="480"
+        xmlns:views="clr-namespace:netKombucha.Views"
         MaxHeight="480" MinHeight="480" Height="480"
         MaxWidth="800" MinWidth="800" Width="800"
         Icon="/Assets/AppIcon/AppIcon-256.ico"
         Background="{StaticResource Grey}"
-        Content="{Binding Content}"
+        x:CompileBindings="True"
         Title="Kombucha">
+
+    <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Panel.IsEnabled>
+            <MultiBinding Converter="{x:Static BoolConverters.And}">
+                <Binding Path="!MainViewModel.IsOpenDialogOpen" />
+                <Binding Path="!MainViewModel.IsSaveDialogOpen" />
+            </MultiBinding>
+        </Panel.IsEnabled>
+
+        <views:TitleView HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="30,10,30,0" />
+        <TransitioningContentControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Content="{Binding Content}" />
+    </Panel>
 </Window>

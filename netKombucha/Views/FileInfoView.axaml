@@ -4,9 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="690" d:DesignHeight="333"
              xmlns:vm="clr-namespace:netKombucha.ViewModels"
-             xmlns:views="clr-namespace:netKombucha.Views"
              x:Class="netKombucha.Views.FileInfoView"
-             x:DataType="vm:FileInfoViewModel">
+             x:DataType="vm:FileInfoViewModel"
+             x:CompileBindings="True">
 
     <UserControl.Styles>
         <Style Selector="Button.Ok">
@@ -17,30 +17,25 @@
         </Style>
     </UserControl.Styles>
 
-    <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-        <views:TitleView HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="30,10,30,0" />
-        <Border HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="55" Width="690" Height="333" Background="{StaticResource White}" CornerRadius="5">
-            <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="40">
-                <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Top" Orientation="Vertical" Spacing="20">
-                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextAlignment="Left" Foreground="{StaticResource TextGray}"
-                               FontFamily="{StaticResource Bold}" FontSize="20" Text="Архив настроек камер" />
-                    <StackPanel Orientation="Vertical" Spacing="10">
-                        <StackPanel Orientation="Horizontal" Spacing="10">
-                            <TextBlock TextAlignment="Left" Foreground="{StaticResource TextGray}" FontFamily="{StaticResource Bold}" FontSize="16" Text="Имя:" />
-                            <TextBlock VerticalAlignment="Center" TextAlignment="Left" Foreground="{StaticResource TextGray}" FontSize="14"
-                                       Text="{Binding File.Name}" />
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" Spacing="10">
-                            <TextBlock TextAlignment="Left" Foreground="{StaticResource TextGray}" FontFamily="{StaticResource Bold}" FontSize="16" Text="Путь:" />
-                            <TextBlock VerticalAlignment="Center" TextAlignment="Left" Foreground="{StaticResource TextGray}" FontSize="14"
-                                       Text="{Binding File.Path.AbsolutePath}" />
-                        </StackPanel>
+    <Border HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="55" Width="690" Height="333" Background="{StaticResource White}" CornerRadius="5">
+        <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="40">
+            <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Top" Orientation="Vertical" Spacing="20">
+                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextAlignment="Left" Foreground="{StaticResource TextGray}" FontFamily="{StaticResource Bold}"
+                           FontSize="20" Text="Архив настроек камер" />
+                <StackPanel Orientation="Vertical" Spacing="10">
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <TextBlock TextAlignment="Left" Foreground="{StaticResource TextGray}" FontFamily="{StaticResource Bold}" FontSize="16" Text="Имя:" />
+                        <TextBlock VerticalAlignment="Center" TextAlignment="Left" Foreground="{StaticResource TextGray}" FontSize="14" Text="{Binding File.Name}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <TextBlock TextAlignment="Left" Foreground="{StaticResource TextGray}" FontFamily="{StaticResource Bold}" FontSize="16" Text="Путь:" />
+                        <TextBlock VerticalAlignment="Center" TextAlignment="Left" Foreground="{StaticResource TextGray}" FontSize="14" Text="{Binding File.Path.AbsolutePath}" />
                     </StackPanel>
                 </StackPanel>
-                <Button Classes="Ok" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="200" Height="49" CornerRadius="25" Command="{Binding Close}">
-                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" FontFamily="{StaticResource Bold}" FontSize="12" Text="Ок" />
-                </Button>
-            </Panel>
-        </Border>
-    </Panel>
+            </StackPanel>
+            <Button Classes="Ok" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="200" Height="49" CornerRadius="25" Command="{Binding Close}">
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" FontFamily="{StaticResource Bold}" FontSize="12" Text="Ок" />
+            </Button>
+        </Panel>
+    </Border>
 </UserControl>

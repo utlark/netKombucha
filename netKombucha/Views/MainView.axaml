@@ -4,94 +4,84 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="480"
              xmlns:vm="clr-namespace:netKombucha.ViewModels"
-             xmlns:views="clr-namespace:netKombucha.Views"
              x:Class="netKombucha.Views.MainView"
-             x:DataType="vm:MainViewModel">
+             x:DataType="vm:MainViewModel"
+             x:CompileBindings="True">
 
     <UserControl.Styles>
         <StyleInclude Source="/Styles/MainViewStyle.axaml" />
     </UserControl.Styles>
 
-    <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-        <Panel.IsEnabled>
-            <MultiBinding Converter="{x:Static BoolConverters.And}">
-                <Binding Path="!IsOpenDialogOpen" />
-                <Binding Path="!IsSaveDialogOpen" />
-            </MultiBinding>
-        </Panel.IsEnabled>
-
-        <views:TitleView HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="30,10,30,0" />
-        <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="50,0,50,0" Orientation="Horizontal" Spacing="50">
-            <!-- FirstStep -->
-            <StackPanel Classes="FirstStepStack" VerticalAlignment="Top" Orientation="Vertical" Spacing="30"
-                        IsVisible="{Binding ConfigurationPackageFile, Converter={x:Static ObjectConverters.IsNull}}">
-                <Image Width="50" Height="50" Stretch="Fill" Source="{SvgImage /Assets/Icons/FirstStepIcon.svg}" Margin="-2,0,0,0" />
-                <StackPanel Orientation="Vertical" Height="98" Spacing="0">
-                    <Button Classes="Primary" Classes.ButtonSelected="{Binding IsSaveDialogOpen}" Width="200" Height="49" CornerRadius="25" Command="{Binding SaveFile}">
-                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal" Spacing="4">
-                            <Image Height="20" Width="20" Stretch="Fill" Source="{SvgImage /Assets/Icons/DownloadArrow.svg}" />
-                            <TextBlock VerticalAlignment="Center" TextAlignment="Left" Width="124" Height="16" FontFamily="{StaticResource Bold}" FontSize="12"
-                                       Text="Скачать настройки" />
-                        </StackPanel>
-                    </Button>
-
-                    <Button Classes.ButtonSelected="{Binding IsOpenDialogOpen}" Width="200" Height="49" CornerRadius="25" Command="{Binding OpenFile}">
-                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal" Spacing="4">
-                            <Image Height="20" Width="20" Stretch="Fill" Source="{SvgImage /Assets/Icons/UploadArrow.svg}" />
-                            <TextBlock VerticalAlignment="Center" TextAlignment="Left" Width="124" Height="16" FontFamily="{StaticResource Bold}" FontSize="12"
-                                       Text="Зашить настройки" />
-                        </StackPanel>
-                    </Button>
-                </StackPanel>
-            </StackPanel>
-
-            <!-- FirstStep-FileSelected -->
-            <StackPanel Classes="FileSelected" VerticalAlignment="Top" Orientation="Vertical" Spacing="30"
-                        IsVisible="{Binding ConfigurationPackageFile, Converter={x:Static ObjectConverters.IsNotNull}}">
-                <Image Width="50" Height="50" Stretch="Fill" Source="{SvgImage /Assets/Icons/FirstStepIcon.svg}" Margin="-2,0,0,0" />
-                <StackPanel Orientation="Vertical" Height="98" Spacing="0">
-                    <Button Classes="Primary" Width="200" Height="49" ToolTip.ShowDelay="100" ToolTip.VerticalOffset="-5" ToolTip.Placement="Top" Command="{Binding OpenFileInfo}">
-                        <ToolTip.Tip>
-                            <TextBlock VerticalAlignment="Center" TextAlignment="Center" FontSize="12" Foreground="#FF000000" Text="{Binding ConfigurationPackageFile.Name}" />
-                        </ToolTip.Tip>
-                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Left" FontFamily="{StaticResource Bold}" FontSize="14"
-                                   Text="{Binding ConfigurationPackageFile.Name, Converter={StaticResource TextShorterConverter}, ConverterParameter=21}" />
-                    </Button>
-
-                    <Button Width="200" Height="30" Command="{Binding RemoveChose}">
-                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Left" FontFamily="{StaticResource Bold}" FontSize="12"
-                                   Foreground="{StaticResource Blue}" Text="Удалить" />
-                    </Button>
-                </StackPanel>
-            </StackPanel>
-
-            <!-- SecondStep -->
-            <StackPanel Classes.StepStackActive="{Binding ConfigurationPackageFile, Converter={x:Static ObjectConverters.IsNotNull}}"
-                        Classes.StepStackInactive="{Binding ConfigurationPackageFile, Converter={x:Static ObjectConverters.IsNull}}"
-                        VerticalAlignment="Top" Orientation="Vertical" Spacing="30">
-                <Panel>
-                    <Line VerticalAlignment="Center" StartPoint="-86,0" EndPoint="35,0" Stroke="#FFFFFF" StrokeThickness="2" />
-                    <Image VerticalAlignment="Center" Width="50" Height="50" Stretch="Fill" Source="{SvgImage /Assets/Icons/SecondStepIcon.svg}" />
-                </Panel>
-
-                <Button Width="200" Height="49" CornerRadius="25" Command="{Binding CameraSetup}">
-                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" FontFamily="{StaticResource Bold}" FontSize="12" Text="Задать камеры" />
+    <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="50,0,50,0" Orientation="Horizontal" Spacing="50">
+        <!-- FirstStep -->
+        <StackPanel Classes="FirstStepStack" VerticalAlignment="Top" Orientation="Vertical" Spacing="30"
+                    IsVisible="{Binding ConfigurationPackageFile, Converter={x:Static ObjectConverters.IsNull}}">
+            <Image Width="50" Height="50" Stretch="Fill" Source="{SvgImage /Assets/Icons/FirstStepIcon.svg}" Margin="-2,0,0,0" />
+            <StackPanel Orientation="Vertical" Height="98" Spacing="0">
+                <Button Classes="Primary" Classes.ButtonSelected="{Binding IsSaveDialogOpen}" Width="200" Height="49" CornerRadius="25" Command="{Binding SaveFile}">
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal" Spacing="4">
+                        <Image Height="20" Width="20" Stretch="Fill" Source="{SvgImage /Assets/Icons/DownloadArrow.svg}" />
+                        <TextBlock VerticalAlignment="Center" TextAlignment="Left" Width="124" Height="16" FontFamily="{StaticResource Bold}" FontSize="12"
+                                   Text="Скачать настройки" />
+                    </StackPanel>
                 </Button>
-            </StackPanel>
 
-            <!-- ThirdStep -->
-            <StackPanel Classes.StepStackActive="{Binding ConfigurationPackageFile, Converter={x:Static ObjectConverters.IsNotNull}}"
-                        Classes.StepStackInactive="{Binding ConfigurationPackageFile, Converter={x:Static ObjectConverters.IsNull}}"
-                        VerticalAlignment="Top" Orientation="Vertical" Spacing="30">
-                <Panel>
-                    <Line VerticalAlignment="Center" StartPoint="-86,0" EndPoint="35,0" Stroke="#FFFFFF" StrokeThickness="2" />
-                    <Image VerticalAlignment="Center" Width="50" Height="50" Stretch="Fill" Source="{SvgImage /Assets/Icons/ThirdStepIcon.svg}" />
-                </Panel>
-
-                <Button Width="200" Height="49" CornerRadius="25">
-                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" FontFamily="{StaticResource Bold}" FontSize="12" Text="Начать" />
+                <Button Classes.ButtonSelected="{Binding IsOpenDialogOpen}" Width="200" Height="49" CornerRadius="25" Command="{Binding OpenFile}">
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal" Spacing="4">
+                        <Image Height="20" Width="20" Stretch="Fill" Source="{SvgImage /Assets/Icons/UploadArrow.svg}" />
+                        <TextBlock VerticalAlignment="Center" TextAlignment="Left" Width="124" Height="16" FontFamily="{StaticResource Bold}" FontSize="12"
+                                   Text="Зашить настройки" />
+                    </StackPanel>
                 </Button>
             </StackPanel>
         </StackPanel>
-    </Panel>
+
+        <!-- FirstStep-FileSelected -->
+        <StackPanel Classes="FileSelected" VerticalAlignment="Top" Orientation="Vertical" Spacing="30"
+                    IsVisible="{Binding ConfigurationPackageFile, Converter={x:Static ObjectConverters.IsNotNull}}">
+            <Image Width="50" Height="50" Stretch="Fill" Source="{SvgImage /Assets/Icons/FirstStepIcon.svg}" Margin="-2,0,0,0" />
+            <StackPanel Orientation="Vertical" Height="98" Spacing="0">
+                <Button Classes="Primary" Width="200" Height="49" ToolTip.ShowDelay="200" ToolTip.VerticalOffset="-5" ToolTip.Placement="Top" Command="{Binding OpenFileInfo}">
+                    <ToolTip.Tip>
+                        <TextBlock VerticalAlignment="Center" TextAlignment="Center" FontSize="12" Foreground="#FF000000" Text="{Binding ConfigurationPackageFile.Name}" />
+                    </ToolTip.Tip>
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Left" FontFamily="{StaticResource Bold}" FontSize="14"
+                               Text="{Binding ConfigurationPackageFile.Name, Converter={StaticResource TextShorterConverter}, ConverterParameter=21}" />
+                </Button>
+
+                <Button Width="200" Height="30" Command="{Binding RemoveChose}">
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Left" FontFamily="{StaticResource Bold}" FontSize="12"
+                               Foreground="{StaticResource Blue}" Text="Удалить" />
+                </Button>
+            </StackPanel>
+        </StackPanel>
+
+        <!-- SecondStep -->
+        <StackPanel Classes.StepStackActive="{Binding ConfigurationPackageFile, Converter={x:Static ObjectConverters.IsNotNull}}"
+                    Classes.StepStackInactive="{Binding ConfigurationPackageFile, Converter={x:Static ObjectConverters.IsNull}}"
+                    VerticalAlignment="Top" Orientation="Vertical" Spacing="30">
+            <Panel>
+                <Line VerticalAlignment="Center" StartPoint="-86,0" EndPoint="35,0" Stroke="#FFFFFF" StrokeThickness="2" />
+                <Image VerticalAlignment="Center" Width="50" Height="50" Stretch="Fill" Source="{SvgImage /Assets/Icons/SecondStepIcon.svg}" />
+            </Panel>
+
+            <Button Width="200" Height="49" CornerRadius="25" Command="{Binding CameraSetup}">
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" FontFamily="{StaticResource Bold}" FontSize="12" Text="Задать камеры" />
+            </Button>
+        </StackPanel>
+
+        <!-- ThirdStep -->
+        <StackPanel Classes.StepStackActive="{Binding ConfigurationPackageFile, Converter={x:Static ObjectConverters.IsNotNull}}"
+                    Classes.StepStackInactive="{Binding ConfigurationPackageFile, Converter={x:Static ObjectConverters.IsNull}}"
+                    VerticalAlignment="Top" Orientation="Vertical" Spacing="30">
+            <Panel>
+                <Line VerticalAlignment="Center" StartPoint="-86,0" EndPoint="35,0" Stroke="#FFFFFF" StrokeThickness="2" />
+                <Image VerticalAlignment="Center" Width="50" Height="50" Stretch="Fill" Source="{SvgImage /Assets/Icons/ThirdStepIcon.svg}" />
+            </Panel>
+
+            <Button Width="200" Height="49" CornerRadius="25">
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" FontFamily="{StaticResource Bold}" FontSize="12" Text="Начать" />
+            </Button>
+        </StackPanel>
+    </StackPanel>
 </UserControl>

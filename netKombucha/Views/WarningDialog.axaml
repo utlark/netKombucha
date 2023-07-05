@@ -10,6 +10,7 @@
         Icon="/Assets/AppIcon/AppIcon-256.ico"
         Background="{StaticResource Grey}"
         WindowStartupLocation="CenterOwner"
+        x:CompileBindings="True"
         Title="{Binding Title}">
 
     <Window.Styles>

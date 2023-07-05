@@ -5,8 +5,6 @@ using Avalonia.Controls;
 using Avalonia.Platform.Storage;
 using ReactiveUI;
 
-// ReSharper disable MemberCanBePrivate.Global
-
 namespace netKombucha.ViewModels;
 
 public class MainViewModel : ViewModelBase
