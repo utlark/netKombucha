@@ -6,7 +6,7 @@ public class MainWindowViewModel : ViewModelBase
 {
     private MainWindowViewModel()
     {
-        Content = MainViewModel = MainViewModel.GetInstance();
+        Content = WizardViewModel = WizardViewModel.GetInstance();
     }
 
     public ViewModelBase Content
@@ -15,7 +15,7 @@ public class MainWindowViewModel : ViewModelBase
         set => this.RaiseAndSetIfChanged(ref _content, value);
     }
 
-    public MainViewModel MainViewModel { get; }
+    public WizardViewModel WizardViewModel { get; }
 
     public static MainWindowViewModel GetInstance() => _instance ??= new MainWindowViewModel();
 

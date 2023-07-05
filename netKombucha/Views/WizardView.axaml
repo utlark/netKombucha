@@ -4,8 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="480"
              xmlns:vm="clr-namespace:netKombucha.ViewModels"
-             x:Class="netKombucha.Views.MainView"
-             x:DataType="vm:MainViewModel"
+             x:Class="netKombucha.Views.WizardView"
+             x:DataType="vm:WizardViewModel"
              x:CompileBindings="True">
 
     <UserControl.Styles>

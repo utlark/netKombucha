@@ -11,6 +11,7 @@
         <entry key="netKombucha/Views/MainWindow.axaml" value="netKombucha/netKombucha.csproj" />
         <entry key="netKombucha/Views/TitleView.axaml" value="netKombucha/netKombucha.csproj" />
         <entry key="netKombucha/Views/WarningDialog.axaml" value="netKombucha/netKombucha.csproj" />
+        <entry key="netKombucha/Views/WizardView.axaml" value="netKombucha/netKombucha.csproj" />
       </map>
     </option>
   </component>

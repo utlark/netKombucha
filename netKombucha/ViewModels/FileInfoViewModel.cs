@@ -20,7 +20,7 @@ public class FileInfoViewModel : ViewModelBase
     public Task Close()
     {
         var mainWindow = MainWindowViewModel.GetInstance();
-        mainWindow.Content = mainWindow.MainViewModel;
+        mainWindow.Content = mainWindow.WizardViewModel;
         return Task.CompletedTask;
     }
 

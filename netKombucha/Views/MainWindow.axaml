@@ -16,8 +16,8 @@
     <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <Panel.IsEnabled>
             <MultiBinding Converter="{x:Static BoolConverters.And}">
-                <Binding Path="!MainViewModel.IsOpenDialogOpen" />
-                <Binding Path="!MainViewModel.IsSaveDialogOpen" />
+                <Binding Path="!WizardViewModel.IsOpenDialogOpen" />
+                <Binding Path="!WizardViewModel.IsSaveDialogOpen" />
             </MultiBinding>
         </Panel.IsEnabled>
 

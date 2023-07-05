@@ -3,9 +3,9 @@ using Avalonia.Markup.Xaml;
 
 namespace netKombucha.Views;
 
-public partial class MainView : UserControl
+public partial class WizardView : UserControl
 {
-    public MainView() => InitializeComponent();
+    public WizardView() => InitializeComponent();
 
     private void InitializeComponent() => AvaloniaXamlLoader.Load(this);
 }

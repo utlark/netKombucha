@@ -7,9 +7,9 @@ using ReactiveUI;
 
 namespace netKombucha.ViewModels;
 
-public class MainViewModel : ViewModelBase
+public class WizardViewModel : ViewModelBase
 {
-    private MainViewModel()
+    private WizardViewModel()
     {
     }
 
@@ -31,7 +31,7 @@ public class MainViewModel : ViewModelBase
         set => this.RaiseAndSetIfChanged(ref _configurationPackageFile, value);
     }
 
-    public static MainViewModel GetInstance() => _instance ??= new MainViewModel();
+    public static WizardViewModel GetInstance() => _instance ??= new WizardViewModel();
 
     public async Task SaveFile()
     {
@@ -64,7 +64,7 @@ public class MainViewModel : ViewModelBase
         return Task.CompletedTask;
     }
 
-    private static MainViewModel _instance;
+    private static WizardViewModel _instance;
 
     private static readonly IReadOnlyList<FilePickerFileType> FilePickerFileType = new[]
     {
