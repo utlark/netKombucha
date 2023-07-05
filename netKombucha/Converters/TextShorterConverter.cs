@@ -9,12 +9,17 @@ public class TextShorterConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        if (value is not string sourceText || !targetType.IsAssignableTo(typeof(string)))
+        if (value is not string sourceText || parameter is not string lenghtString || !targetType.IsAssignableTo(typeof(string)))
             return new BindingNotification(new InvalidCastException(), BindingErrorType.Error);
 
-        if (string.IsNullOrEmpty(sourceText) || sourceText.Length <= 21)
+        if (!int.TryParse(lenghtString, out var lenght))
+            return new BindingNotification(new InvalidCastException(), BindingErrorType.Error);
+
+        if (string.IsNullOrEmpty(sourceText) || sourceText.Length <= lenght)
             return sourceText;
-        return !string.IsNullOrEmpty(sourceText) ? $"{sourceText[..9]}...{sourceText[^9..]}" : sourceText;
+
+        var half = (lenght - 3) / 2;
+        return $"{sourceText[..half]}...{sourceText[^half..]}";
     }
 
     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) => throw new NotSupportedException();

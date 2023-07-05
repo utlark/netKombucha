@@ -55,7 +55,7 @@
                             <TextBlock VerticalAlignment="Center" TextAlignment="Center" FontSize="12" Foreground="#FF000000" Text="{Binding ConfigurationPackageFile.Name}" />
                         </ToolTip.Tip>
                         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Left" FontFamily="{StaticResource Bold}" FontSize="14"
-                                   Text="{Binding ConfigurationPackageFile.Name, Converter={StaticResource TextShorterConverter}}" />
+                                   Text="{Binding ConfigurationPackageFile.Name, Converter={StaticResource TextShorterConverter}, ConverterParameter=21}" />
                     </Button>
 
                     <Button Width="200" Height="30" Command="{Binding RemoveChose}">
