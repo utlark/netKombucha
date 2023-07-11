@@ -5,12 +5,15 @@
       <map>
         <entry key="netKombucha/App.axaml" value="netKombucha/netKombucha.csproj" />
         <entry key="netKombucha/Styles/BaseStyle.axaml" value="netKombucha/netKombucha.csproj" />
+        <entry key="netKombucha/Styles/MainPageStyle.axaml" value="netKombucha/netKombucha.csproj" />
         <entry key="netKombucha/Styles/MainViewStyle.axaml" value="netKombucha/netKombucha.csproj" />
+        <entry key="netKombucha/Views/FileInfoPage.axaml" value="netKombucha/netKombucha.csproj" />
         <entry key="netKombucha/Views/FileInfoView.axaml" value="netKombucha/netKombucha.csproj" />
         <entry key="netKombucha/Views/MainView.axaml" value="netKombucha/netKombucha.csproj" />
         <entry key="netKombucha/Views/MainWindow.axaml" value="netKombucha/netKombucha.csproj" />
         <entry key="netKombucha/Views/TitleView.axaml" value="netKombucha/netKombucha.csproj" />
         <entry key="netKombucha/Views/WarningDialog.axaml" value="netKombucha/netKombucha.csproj" />
+        <entry key="netKombucha/Views/WizardPage.axaml" value="netKombucha/netKombucha.csproj" />
         <entry key="netKombucha/Views/WizardView.axaml" value="netKombucha/netKombucha.csproj" />
       </map>
     </option>

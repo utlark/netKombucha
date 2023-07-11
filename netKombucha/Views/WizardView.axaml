@@ -9,7 +9,7 @@
              x:CompileBindings="True">
 
     <UserControl.Styles>
-        <StyleInclude Source="/Styles/MainViewStyle.axaml" />
+        <StyleInclude Source="/Styles/WizardViewStyle.axaml" />
     </UserControl.Styles>
 
     <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="50,0,50,0" Orientation="Horizontal" Spacing="50">
