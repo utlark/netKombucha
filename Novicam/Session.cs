@@ -1,7 +1,7 @@
 ﻿using System.Net;
 using System.Net.Http.Headers;
 using System.Text;
-using Newtonsoft.Json;
+using System.Text.Json;
 using Novicam.Operation;
 
 namespace Novicam;
@@ -25,12 +25,12 @@ public class Session : IDisposable
 
     public async Task Login()
     {
-        var stringPayload = JsonConvert.SerializeObject(new LoginCapabilitiesRq(new CapabilitiesRqData(UserName)));
+        var stringPayload = JsonSerializer.Serialize(new LoginCapabilitiesRq(new CapabilitiesRqData(UserName)));
         var httpContent   = new StringContent(stringPayload, Encoding.UTF8, "application/json");
         var httpResponse  = await _client.PostAsync(BaseUrl + ApiLoginCapabilities, httpContent);
         httpResponse.EnsureSuccessStatusCode();
 
-        var capabilities = JsonConvert.DeserializeObject<LoginCapabilitiesRp>(await httpResponse.Content.ReadAsStringAsync()).Data;
+        var capabilities = JsonSerializer.Deserialize<LoginCapabilitiesRp>(await httpResponse.Content.ReadAsStringAsync()).Data;
         var dateTime     = Security.SecurityDateTime();
 
         PasswordHash = Security.SecurityStep1(UserName, capabilities.Param.Salt, dateTime.Hash, Password);
@@ -38,11 +38,11 @@ public class Session : IDisposable
         PasswordHash = capabilities.Param.EnableIteration ? Security.SecurityStep3(capabilities.Param.Iterations, PasswordHash) : PasswordHash;
 
         var payload = new LoginRq(new LoginRqData(UserName, "sha256-1", PasswordHash, capabilities.SessionId, dateTime.DataTime));
-        httpContent  = new StringContent(JsonConvert.SerializeObject(payload), Encoding.UTF8, "application/json");
+        httpContent  = new StringContent(JsonSerializer.Serialize(payload), Encoding.UTF8, "application/json");
         httpResponse = await _client.PostAsync(BaseUrl + ApiLogin, httpContent);
         httpResponse.EnsureSuccessStatusCode();
 
-        var loginResponse = JsonConvert.DeserializeObject<LoginRp>(await httpResponse.Content.ReadAsStringAsync());
+        var loginResponse = JsonSerializer.Deserialize<LoginRp>(await httpResponse.Content.ReadAsStringAsync());
 
         var uri = new Uri(BaseUrl);
         CookieContainer.Add(uri, new Cookie("updateTips", "true"));
@@ -58,11 +58,11 @@ public class Session : IDisposable
     {
         if (!IsLogged) throw new ApplicationException();
 
-        var stringPayload = new StringContent(JsonConvert.SerializeObject(new ExportParamRq()), Encoding.UTF8, "application/json");
+        var stringPayload = new StringContent(JsonSerializer.Serialize(new ExportParamRq()), Encoding.UTF8, "application/json");
         var httpResponse  = await _client.PostAsync(BaseUrl + ApiExportParams, stringPayload);
         httpResponse.EnsureSuccessStatusCode();
 
-        var exportResponse = JsonConvert.DeserializeObject<ExportParamRp>(await httpResponse.Content.ReadAsStringAsync());
+        var exportResponse = JsonSerializer.Deserialize<ExportParamRp>(await httpResponse.Content.ReadAsStringAsync());
 
         var fileStream = await _client.GetStreamAsync(BaseUrl + exportResponse.Data.Url);
 
@@ -95,7 +95,7 @@ public class Session : IDisposable
     {
         if (!IsLogged) throw new ApplicationException();
 
-        var stringPayload = new StringContent(JsonConvert.SerializeObject(new RebootRq()), Encoding.UTF8, "application/json");
+        var stringPayload = new StringContent(JsonSerializer.Serialize(new RebootRq()), Encoding.UTF8, "application/json");
         var httpResponse  = await _client.PostAsync(BaseUrl + ApiSystemReboot, stringPayload);
         httpResponse.EnsureSuccessStatusCode();
 
