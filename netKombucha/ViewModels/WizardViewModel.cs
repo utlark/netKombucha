@@ -1,16 +1,24 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reactive;
 using System.Threading.Tasks;
 using Avalonia.Controls;
 using Avalonia.Platform.Storage;
 using ReactiveUI;
+using Splat;
 
 namespace netKombucha.ViewModels;
 
-public class WizardViewModel : ViewModelBase
+public class WizardViewModel : ReactiveObject, IRoutableViewModel
 {
-    private WizardViewModel()
+    public string UrlPathSegment { get; } = Guid.NewGuid().ToString()[..8];
+    public IScreen HostScreen { get; }
+
+    public WizardViewModel(IScreen hostScreen = null)
     {
+        HostScreen = hostScreen ?? Locator.Current.GetService<IScreen>();
+        OpenFileInfo = ReactiveCommand.CreateFromObservable(() => HostScreen.Router.Navigate.Execute(new FileInfoViewModel(ConfigurationPackageFile)));
     }
 
     public bool IsOpenDialogOpen
@@ -31,7 +39,7 @@ public class WizardViewModel : ViewModelBase
         set => this.RaiseAndSetIfChanged(ref _configurationPackageFile, value);
     }
 
-    public static WizardViewModel GetInstance() => _instance ??= new WizardViewModel();
+    public ReactiveCommand<Unit, IRoutableViewModel> OpenFileInfo { get; }
 
     public async Task SaveFile()
     {
@@ -47,12 +55,6 @@ public class WizardViewModel : ViewModelBase
         IsOpenDialogOpen = false;
     }
 
-    public Task OpenFileInfo()
-    {
-        MainWindowViewModel.GetInstance().Content = new FileInfoViewModel(ConfigurationPackageFile);
-        return Task.CompletedTask;
-    }
-
     public Task RemoveChose()
     {
         ConfigurationPackageFile = null;
@@ -63,8 +65,6 @@ public class WizardViewModel : ViewModelBase
     {
         return Task.CompletedTask;
     }
-
-    private static WizardViewModel _instance;
 
     private static readonly IReadOnlyList<FilePickerFileType> FilePickerFileType = new[]
     {

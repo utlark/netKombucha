@@ -4,10 +4,11 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using netKombucha.Views;
+using ReactiveUI;
 
 namespace netKombucha.ViewModels;
 
-public class WarningViewModel : ViewModelBase
+public class WarningViewModel : ReactiveObject
 {
     public WarningViewModel(string title, string warningText)
     {

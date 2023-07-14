@@ -1,25 +1,25 @@
-﻿using ReactiveUI;
+﻿using System;
+using ReactiveUI;
+using Splat;
 
 namespace netKombucha.ViewModels;
 
-public class MainWindowViewModel : ViewModelBase
+public class MainWindowViewModel : ReactiveObject, IRoutableViewModel
 {
-    private MainWindowViewModel()
-    {
-        Content = WizardViewModel = WizardViewModel.GetInstance();
-    }
+    public string UrlPathSegment { get; } = Guid.NewGuid().ToString()[..8];
+    public IScreen HostScreen { get; }
 
-    public ViewModelBase Content
+    public MainWindowViewModel(IScreen hostScreen = null)
     {
-        get => _content;
-        set => this.RaiseAndSetIfChanged(ref _content, value);
+        HostScreen = hostScreen ?? Locator.Current.GetService<IScreen>();
+
+        WizardViewModel = new WizardViewModel();
+        TitleViewModel = new TitleViewModel();
+
+        HostScreen.Router.Navigate.Execute(WizardViewModel);
     }
 
     public WizardViewModel WizardViewModel { get; }
 
-    public static MainWindowViewModel GetInstance() => _instance ??= new MainWindowViewModel();
-
-    private static MainWindowViewModel _instance;
-
-    private ViewModelBase _content;
+    public TitleViewModel TitleViewModel { get; }
 }
