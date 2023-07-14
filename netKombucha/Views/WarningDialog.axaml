@@ -28,7 +28,7 @@
             <TextBlock VerticalAlignment="Top" Height="90" Width="420" TextWrapping="Wrap" TextAlignment="Left" FontSize="13" Text="{Binding WarningText}" />
         </StackPanel>
         <Panel Height="30" Width="480">
-            <Button Classes="Warning" VerticalAlignment="Center" HorizontalAlignment="Right" Height="30" Width="80" CornerRadius="5" Command="{Binding OkButton}">
+            <Button Classes="Warning" VerticalAlignment="Center" HorizontalAlignment="Right" Height="30" Width="80" CornerRadius="5" Command="{Binding Close}">
                 <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Left" FontSize="15" Text="Ок" />
             </Button>
         </Panel>

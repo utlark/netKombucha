@@ -1,95 +1,74 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reactive;
-using System.Threading.Tasks;
 using Avalonia.Controls;
 using Avalonia.Platform.Storage;
 using ReactiveUI;
-using Splat;
+using ReactiveUI.Fody.Helpers;
 
 namespace netKombucha.ViewModels;
 
-public class WizardViewModel : ReactiveObject, IRoutableViewModel
+public class WizardViewModel : BaseViewModel
 {
-    public string UrlPathSegment { get; } = Guid.NewGuid().ToString()[..8];
-    public IScreen HostScreen { get; }
-
-    public WizardViewModel(IScreen hostScreen = null)
+    private WizardViewModel(IScreen hostScreen = null) : base(hostScreen)
     {
-        HostScreen = hostScreen ?? Locator.Current.GetService<IScreen>();
-        OpenFileInfo = ReactiveCommand.CreateFromObservable(() => HostScreen.Router.Navigate.Execute(new FileInfoViewModel(ConfigurationPackageFile)));
+        OpenFile = ReactiveCommand.CreateFromTask(async () => ConfigurationFile = (await _window.StorageProvider.OpenFilePickerAsync(_fileOpenOptions)).FirstOrDefault());
+        OpenFile.IsExecuting.ToPropertyEx(this, x => x.IsOpenDialogOpen);
+
+        SaveFile = ReactiveCommand.CreateFromTask(async () => ConfigurationFile = await _window.StorageProvider.SaveFilePickerAsync(_fileSaveOptions));
+        SaveFile.IsExecuting.ToPropertyEx(this, x => x.IsSaveDialogOpen);
+
+        this.WhenAnyValue(vm => vm.IsOpenDialogOpen, vm => vm.IsSaveDialogOpen, (open, save) => open | save)
+            .ToPropertyEx(this, x => x.IsSomeDialogOpen);
+
+        OpenFileInfo = ReactiveCommand.CreateFromObservable(() => HostScreen.Router.Navigate.Execute(new FileInfoViewModel(ConfigurationFile)));
+
+        RemoveChose = ReactiveCommand.Create(() => { ConfigurationFile = null; });
+        CameraSetup = ReactiveCommand.Create(() => { });
     }
 
-    public bool IsOpenDialogOpen
-    {
-        get => _isOpenDialogOpen;
-        set => this.RaiseAndSetIfChanged(ref _isOpenDialogOpen, value);
-    }
+    public extern bool IsOpenDialogOpen { [ObservableAsProperty] get; }
 
-    public bool IsSaveDialogOpen
-    {
-        get => _isSaveDialogOpen;
-        set => this.RaiseAndSetIfChanged(ref _isSaveDialogOpen, value);
-    }
+    public extern bool IsSaveDialogOpen { [ObservableAsProperty] get; }
 
-    public IStorageFile ConfigurationPackageFile
-    {
-        get => _configurationPackageFile;
-        set => this.RaiseAndSetIfChanged(ref _configurationPackageFile, value);
-    }
+    public extern bool IsSomeDialogOpen { [ObservableAsProperty] get; }
+
+    [Reactive] public IStorageFile ConfigurationFile { get; set; }
 
     public ReactiveCommand<Unit, IRoutableViewModel> OpenFileInfo { get; }
 
-    public async Task SaveFile()
-    {
-        IsSaveDialogOpen = true;
-        ConfigurationPackageFile = await _window.StorageProvider.SaveFilePickerAsync(_filePickerSaveOptions);
-        IsSaveDialogOpen = false;
-    }
+    public ReactiveCommand<Unit, IStorageFile> SaveFile { get; }
 
-    public async Task OpenFile()
-    {
-        IsOpenDialogOpen = true;
-        ConfigurationPackageFile = (await _window.StorageProvider.OpenFilePickerAsync(_filePickerOpenOptions)).FirstOrDefault();
-        IsOpenDialogOpen = false;
-    }
+    public ReactiveCommand<Unit, IStorageFile> OpenFile { get; }
 
-    public Task RemoveChose()
-    {
-        ConfigurationPackageFile = null;
-        return Task.CompletedTask;
-    }
+    public ReactiveCommand<Unit, Unit> RemoveChose { get; }
 
-    public Task CameraSetup()
-    {
-        return Task.CompletedTask;
-    }
+    public ReactiveCommand<Unit, Unit> CameraSetup { get; }
 
-    private static readonly IReadOnlyList<FilePickerFileType> FilePickerFileType = new[]
+    public static WizardViewModel GetInstance(IScreen hostScreen = null) => _instance ??= new WizardViewModel(hostScreen);
+
+    private static WizardViewModel _instance;
+
+    private static readonly IReadOnlyList<FilePickerFileType> FileType = new[]
     {
+        new FilePickerFileType(".png") { Patterns = new[] { "*.png" } },
         new FilePickerFileType(".scp") { Patterns = new[] { "*.scp" } },
-        new FilePickerFileType(".zip") { Patterns = new[] { "*.zip" } },
-        new FilePickerFileType(".png") { Patterns = new[] { "*.png" } }
+        new FilePickerFileType(".zip") { Patterns = new[] { "*.zip" } }
     };
-
-    private bool _isOpenDialogOpen;
-    private bool _isSaveDialogOpen;
-    private IStorageFile _configurationPackageFile;
 
     private readonly Window _window = new();
 
-    private readonly FilePickerOpenOptions _filePickerOpenOptions = new()
+    private readonly FilePickerOpenOptions _fileOpenOptions = new()
     {
         AllowMultiple = false,
-        FileTypeFilter = FilePickerFileType
+        FileTypeFilter = FileType
     };
 
-    private readonly FilePickerSaveOptions _filePickerSaveOptions = new()
+    private readonly FilePickerSaveOptions _fileSaveOptions = new()
     {
         SuggestedFileName = "sautCameraPackage",
-        DefaultExtension = FilePickerFileType.First().Name,
-        FileTypeChoices = FilePickerFileType,
+        DefaultExtension = FileType.First().Name,
+        FileTypeChoices = FileType,
         ShowOverwritePrompt = true
     };
 }

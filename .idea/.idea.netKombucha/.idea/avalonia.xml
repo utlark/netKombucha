@@ -7,6 +7,7 @@
         <entry key="netKombucha/Styles/BaseStyle.axaml" value="netKombucha/netKombucha.csproj" />
         <entry key="netKombucha/Styles/MainPageStyle.axaml" value="netKombucha/netKombucha.csproj" />
         <entry key="netKombucha/Styles/MainViewStyle.axaml" value="netKombucha/netKombucha.csproj" />
+        <entry key="netKombucha/Styles/WizardViewStyle.axaml" value="netKombucha/netKombucha.csproj" />
         <entry key="netKombucha/Views/FileInfoPage.axaml" value="netKombucha/netKombucha.csproj" />
         <entry key="netKombucha/Views/FileInfoView.axaml" value="netKombucha/netKombucha.csproj" />
         <entry key="netKombucha/Views/MainView.axaml" value="netKombucha/netKombucha.csproj" />

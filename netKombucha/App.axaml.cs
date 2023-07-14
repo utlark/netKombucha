@@ -24,7 +24,7 @@ public class App : Application, IScreen
     public override void OnFrameworkInitializationCompleted()
     {
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
-            desktop.MainWindow = new MainWindow(new MainWindowViewModel());
+            desktop.MainWindow = new MainWindow(MainWindowViewModel.GetInstance());
 
         base.OnFrameworkInitializationCompleted();
     }

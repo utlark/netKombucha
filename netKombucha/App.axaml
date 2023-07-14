@@ -3,10 +3,6 @@
              xmlns:converters="clr-namespace:netKombucha.Converters"
              x:Class="netKombucha.App">
 
-    <Application.Styles>
-        <FluentTheme />
-    </Application.Styles>
-
     <Application.Resources>
         <Color x:Key="Grey">#FF4D5057</Color>
         <Color x:Key="Gold">#FFF8C822</Color>
@@ -26,6 +22,7 @@
     </Application.Resources>
 
     <Application.Styles>
+        <FluentTheme />
         <StyleInclude Source="/Styles/BaseStyle.axaml" />
     </Application.Styles>
 </Application>

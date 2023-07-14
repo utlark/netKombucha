@@ -1,16 +1,14 @@
-using System;
 using ReactiveUI;
-using Splat;
 
 namespace netKombucha.ViewModels;
 
-public class TitleViewModel : ReactiveObject, IRoutableViewModel
+public class TitleViewModel : BaseViewModel
 {
-    public string UrlPathSegment { get; } = Guid.NewGuid().ToString()[..8];
-    public IScreen HostScreen { get; }
-
-    public TitleViewModel(IScreen hostScreen = null)
+    private TitleViewModel(IScreen hostScreen = null) : base(hostScreen)
     {
-        HostScreen = hostScreen ?? Locator.Current.GetService<IScreen>();
     }
+
+    public static TitleViewModel GetInstance(IScreen hostScreen = null) => _instance ??= new TitleViewModel(hostScreen);
+
+    private static TitleViewModel _instance;
 }

@@ -25,15 +25,17 @@
                 <StackPanel Orientation="Vertical" Spacing="10">
                     <StackPanel Orientation="Horizontal" Spacing="10">
                         <TextBlock TextAlignment="Left" Foreground="{StaticResource TextGray}" FontFamily="{StaticResource Bold}" FontSize="16" Text="Имя:" />
-                        <TextBlock VerticalAlignment="Center" TextAlignment="Left" Foreground="{StaticResource TextGray}" FontSize="14" Text="{Binding File.Name}" />
+                        <TextBlock VerticalAlignment="Center" TextAlignment="Left" Foreground="{StaticResource TextGray}" FontSize="14"
+                                   Text="{Binding StorageFile.Name}" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Spacing="10">
                         <TextBlock TextAlignment="Left" Foreground="{StaticResource TextGray}" FontFamily="{StaticResource Bold}" FontSize="16" Text="Путь:" />
-                        <TextBlock VerticalAlignment="Center" TextAlignment="Left" Foreground="{StaticResource TextGray}" FontSize="14" Text="{Binding File.Path.AbsolutePath}" />
+                        <TextBlock VerticalAlignment="Center" TextAlignment="Left" Foreground="{StaticResource TextGray}" FontSize="14"
+                                   Text="{Binding StorageFile.Path.AbsolutePath}" />
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
-            <Button Classes="Ok" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="200" Height="49" CornerRadius="25" Command="{Binding Close}">
+            <Button Classes="Ok" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="200" Height="49" CornerRadius="25" Command="{Binding NavigateBack}">
                 <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" FontFamily="{StaticResource Bold}" FontSize="12" Text="Ок" />
             </Button>
         </Panel>

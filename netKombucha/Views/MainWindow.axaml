@@ -13,14 +13,7 @@
         x:CompileBindings="True"
         Title="Kombucha">
 
-    <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-        <Panel.IsEnabled>
-            <MultiBinding Converter="{x:Static BoolConverters.And}">
-                <Binding Path="!WizardViewModel.IsOpenDialogOpen" />
-                <Binding Path="!WizardViewModel.IsSaveDialogOpen" />
-            </MultiBinding>
-        </Panel.IsEnabled>
-
+    <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsEnabled="{Binding !WizardViewModel.IsSomeDialogOpen}">
         <reactiveui:ViewModelViewHost HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="30,10,30,0" ViewModel="{Binding TitleViewModel}" />
         <reactiveui:RoutedViewHost HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Router="{Binding HostScreen.Router}" PageTransition="{x:Null}" />
     </Panel>

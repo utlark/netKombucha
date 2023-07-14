@@ -1,30 +1,18 @@
-using System;
 using System.Reactive;
 using Avalonia.Platform.Storage;
 using ReactiveUI;
-using Splat;
+using ReactiveUI.Fody.Helpers;
 
 namespace netKombucha.ViewModels;
 
-public class FileInfoViewModel : ReactiveObject, IRoutableViewModel
+public class FileInfoViewModel : BaseViewModel
 {
-    public IScreen HostScreen { get; }
-
-    public string UrlPathSegment { get; } = Guid.NewGuid().ToString()[..8];
-
-    public FileInfoViewModel(IStorageFile file, IScreen hostScreen = null)
+    public FileInfoViewModel(IStorageFile storageFile, IScreen hostScreen = null) : base(hostScreen)
     {
-        File = file;
-        HostScreen = hostScreen ?? Locator.Current.GetService<IScreen>();
+        StorageFile = storageFile;
     }
 
-    public IStorageFile File
-    {
-        get => _file;
-        private set => this.RaiseAndSetIfChanged(ref _file, value);
-    }
+    [Reactive] public IStorageFile StorageFile { get; private set; }
 
-    public ReactiveCommand<Unit, IRoutableViewModel> Close => HostScreen.Router.NavigateBack;
-
-    private IStorageFile _file;
+    public ReactiveCommand<Unit, IRoutableViewModel> NavigateBack => HostScreen.Router.NavigateBack;
 }
